@@ -10,13 +10,8 @@ Here you have the opportunity to show your **passion.**
 
 - HTML AND CSS 
 
-![alt text](docs/login_1024.png "HTML AND CSS") 
+![alt text](docs/html.png "HTML AND CSS") 
 
-![alt text](docs/login_movile.png "HTML AND CSS")
-
-![alt text](docs/main_1024.png "HTML AND CSS")
-
-![alt text](docs/main_movile.png "HTML AND CSS")
 
 
 ## WHAT IT'S USED
