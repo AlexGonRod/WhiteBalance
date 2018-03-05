@@ -8,6 +8,47 @@ Here you have the opportunity to show your **passion.**
 
 ## MOCKUPS
 
-- MOCKUP ![alt text](https://raw.githubusercontent.com/Robertvera/RocketMan/rama2/docs/RocketMan-wireframe.png "Mockup") 
+- HTML AND CSS 
 
-- HTML AND CSS ![alt text](https://raw.githubusercontent.com/Robertvera/RocketMan/rama2/docs/RocketMan-design.png "HTML AND CSS") 
+![alt text](docs/login_1024.png "HTML AND CSS") 
+
+![alt text](docs/login_movile.png "HTML AND CSS")
+
+![alt text](docs/main_1024.png "HTML AND CSS")
+
+![alt text](docs/main_movile.png "HTML AND CSS")
+
+
+## WHAT IT'S USED
+
+- Frameworks: Bootstrap 4
+- REACT
+- REACT Hash Router
+- REACT Photo Gallery
+- SandBox
+- JASMINE
+- Some React Components
+- MongoDB
+- EXPRESS
+- PASSPORT
+
+
+## COMPONENT TREE
+
+* Log In/Register
+    * Main App
+        * Landing Page
+            * User Page
+            * User Profile
+
+- Main App: this main componetn renderizes every single component.
+- LogIn/Register: a kind of Splash Screen, the first thing that every user sees the first time.
+- Landing Page: The main page when a user has logged in. He can follow other users.
+- User Page: User only sees his follower's pictures
+- User profile: A page where user changes his data.
+
+## DEVELOPER
+
+- Alex Gonzalez (https://github.com/AlexGonRod)
+
+
