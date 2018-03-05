@@ -6,7 +6,8 @@ Here you have the opportunity to show your **passion.**
 
 ## SURGE
 
-## MOCKUPS
+
+## MOCKUPS
 
 - HTML AND CSS 
 
@@ -14,7 +15,7 @@ Here you have the opportunity to show your **passion.**
 
 
 
-## WHAT IT'S USED
+## WHAT IT'S USED
 
 - Frameworks: Bootstrap 4
 - REACT
@@ -42,7 +43,7 @@ Here you have the opportunity to show your **passion.**
 - User Page: User only sees his follower's pictures
 - User profile: A page where user changes his data.
 
-## DEVELOPER
+## DEVELOPER
 
 - Alex Gonzalez (https://github.com/AlexGonRod)
 
