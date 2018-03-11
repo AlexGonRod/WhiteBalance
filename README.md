@@ -6,8 +6,17 @@ Here you have the opportunity to show your **passion.**
 
 ## SURGE
 
+## REPO GIT
 
-## MOCKUPS
+- WhiteBalance (https://github.com/AlexGonRod/WhiteBalance)
+
+## PREWORK
+
+- ![alt text](docs/DataModel.png "DATA MODEL")
+- ![alt text](docs/UML.png "UML")
+- ![alt text](docs/SpringPlan.png "SPRING PLAN")
+
+## MOCKUPS
 
 - HTML AND CSS 
 
@@ -15,16 +24,17 @@ Here you have the opportunity to show your **passion.**
 
 
 
-## WHAT IT'S USED
+## WHAT IT'S USED
 
-- Frameworks: Bootstrap 4
+- Framework: React Material-UI
 - REACT
 - REACT Hash Router
 - REACT Photo Gallery
+- Some React Components
 - SandBox
 - JASMINE
-- Some React Components
 - MongoDB
+- Mongoose
 - EXPRESS
 - PASSPORT
 
@@ -37,13 +47,13 @@ Here you have the opportunity to show your **passion.**
             * User Page
             * User Profile
 
-- Main App: this main componetn renderizes every single component.
-- LogIn/Register: a kind of Splash Screen, the first thing that every user sees the first time.
-- Landing Page: The main page when a user has logged in. He can follow other users.
-- User Page: User only sees his follower's pictures
-- User profile: A page where user changes his data.
+- **LogIn/Register:** a kind of Splash Screen, the first thing that every user sees the first time.
+- **Main App**: this main component renderizes every single component.
+- **Landing Page:** The main page when a user has logged in. He can see some **categories.**
+- **User Page:** User only sees his follower's pictures
+- **User profile:** A page where user changes his data.
 
-## DEVELOPER
+## DEVELOPER
 
 - Alex Gonzalez (https://github.com/AlexGonRod)
 
