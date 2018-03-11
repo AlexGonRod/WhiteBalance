@@ -16,7 +16,15 @@ Here you have the opportunity to show your **passion.**
 - ![alt text](docs/UML.png "UML")
 - ![alt text](docs/SpringPlan.png "SPRING PLAN")
 
-## MOCKUPS
+- WhiteBalance (https://github.com/AlexGonRod/WhiteBalance)
+
+## PREWORK
+
+- ![alt text](docs/DataModel.png "DATA MODEL")
+- ![alt text](docs/UML.png "UML")
+- ![alt text](docs/SpringPlan.png "SPRING PLAN")
+
+## MOCKUPS
 
 - HTML AND CSS 
 
@@ -24,7 +32,7 @@ Here you have the opportunity to show your **passion.**
 
 
 
-## WHAT IT'S USED
+## WHAT IT'S USED
 
 - Framework: React Material-UI
 - REACT
@@ -52,7 +60,7 @@ Here you have the opportunity to show your **passion.**
 - **User Page:** User only sees his follower's pictures
 - **User profile:** A page where user changes his data.
 
-## DEVELOPER
+## DEVELOPER
 
 - Alex Gonzalez (https://github.com/AlexGonRod)
 
