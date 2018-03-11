@@ -18,17 +18,12 @@ Here you have the opportunity to show your **passion.**
 
 - WhiteBalance (https://github.com/AlexGonRod/WhiteBalance)
 
-## PREWORK
-
-- ![alt text](docs/DataModel.png "DATA MODEL")
-- ![alt text](docs/UML.png "UML")
-- ![alt text](docs/SpringPlan.png "SPRING PLAN")
 
 ## MOCKUPS
 
 - HTML AND CSS 
 
-![alt text](docs/html.png "HTML AND CSS") 
+![alt text](docs/mockup.png "HTML AND CSS") 
 
 
 

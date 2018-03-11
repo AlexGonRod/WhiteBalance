@@ -1,5 +1,5 @@
 body { 
-    margin: 0; 
+    margin-top: 0; 
 }
 header { 
   padding: .5vw;
@@ -17,7 +17,7 @@ header div {
   -ms-flex: auto;
   flex: auto; 
   width: 400px; 
-  margin: .5vw; 
+  margin: .1vw; 
 }
 header div img { 
   width: 100%; 
