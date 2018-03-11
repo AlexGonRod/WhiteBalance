@@ -4,7 +4,11 @@
   "private": true,
   "dependencies": {
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
+    "react-measure": "^3.0.0-rc.3",
+    "react-photo-gallery": "^6.0.22",
+    "react-plx": "^1.0.6",
     "react-scripts": "1.1.1"
   },
   "scripts": {

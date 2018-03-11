@@ -1,0 +1,101 @@
+
+  
+body {
+  font-family: "Roboto", sans-serif;
+  background: rgb(213, 214, 214);
+  margin: 0;
+  padding: 0;
+}
+a, p {
+  color: grey;
+  text-decoration: none;
+} 
+a {
+  font-weight: bold;
+}
+.row {
+    
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+}
+
+
+.column {
+  flex: 1;
+  flex-direction: column;
+  
+}
+
+.column-double {
+    
+  flex-direction: column;
+  flex: 2;
+}
+
+.centered-box {
+    background: rgb(211, 211, 211);
+  border: 1px solid grey;
+  border-radius: 4px;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.center-text{
+  text-align: center;
+}
+.personalized-input{
+  font-size: 12pt;
+  min-width: 200px;
+  max-width: 350px;
+  width: 90%;
+  padding-top: 10px;
+  margin: 5px;
+  border-top: transparent;
+  border-right: transparent;
+  border-bottom: 1px solid grey;
+  border-left: transparent;
+  background: transparent;
+}
+.personalized-input:active{
+  border-bottom: 2px solid grey;
+}
+.personalized-input::placeholder{
+  color: gray;
+}
+.button {
+  max-width: 350px;
+  width: 90%;
+  font-weight: bold;
+  font-size: 14pt;
+  color: grey;
+  background: transparent;
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin: 15px;
+}  
+
+.fb-login-button {
+max-width: 350px;
+  width: 90%;
+  font-weight: bold;
+  font-size: 14pt;
+  color: grey;
+  background: transparent;
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin: 15px;
+}
+
+.personalized-input:focus{
+  outline: transparent;
+  border-bottom: 2px solid;
+}
+*:focus {
+  background: rgba(255,255,255,0.3) ;
+  outline-color: gray;
+}
