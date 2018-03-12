@@ -1,23 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+*{
+    
+}
+
+#jumbos{
+    text-shadow: 2px 2px 10px black;
+    font-family: 'Raleway', sans-serif;
+}
+
 #jumbo1 {
+   margin-top: 10px;
    background-image:url('../img-00a.jpg');
-   color:white;
 }
 
 #jumbo2 {
+    margin-top: 0px;
    background-image:url('../21950039_10212780525499766_7728153444294096198_o.jpg');
    color:white;
 }
 
 #jumbo3 {
+    margin-top: 0px;
    background-image:url('../night-in-the-city-lightbox.jpg');
    color:white;
 }
 
 #jumbo4 {
+    margin-top: 0px;
    background-image:url('../people.jpg');
    color:white;
 }
 
 p {
-    color: white
+    color: white;
 }

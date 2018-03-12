@@ -4,7 +4,7 @@ import './styles/main.css'
 class Categories extends Component {
     render() {
         return (
-            <div>
+            <div id="jumbos">
                 <div id="jumbo1" className="jumbotron jumbotron-fluid">
                     <div id="C1" className="container">
                         <h1 id="" className="display-4">Category 1</h1>

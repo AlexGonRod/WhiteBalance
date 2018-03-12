@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import Login from './components/login'
-import Categories from './components/categories'
+import { HashRouter } from 'react-router-dom'
 import Header from './components/header'
-import Jumbotron from './components/jumbotron'
-import ImageList from './components/ImageList'
+import Home from './components/home'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-         {/* <Login />  */}
-         <Header />
-          <Categories /> 
-        {/* <Jumbotron />
-        
-        <ImageList />    */}
-      </div>
+      <HashRouter>
+        <div className="App">
+          <Header />
+          <Home /> 
+
+        </div>
+      </HashRouter>
     );
   }
 }

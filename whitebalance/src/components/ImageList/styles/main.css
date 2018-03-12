@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+
+
+
 body { 
-    margin-top: 0; 
+  margin-top: 0; 
+  font-family: 'Raleway', sans-serif;
 }
 header { 
-  padding: .5vw;
+  
   font-size: 0;
   display: -ms-flexbox;
   -ms-flex-wrap: wrap;
@@ -17,7 +23,7 @@ header div {
   -ms-flex: auto;
   flex: auto; 
   width: 400px; 
-  margin: .1vw; 
+  
 }
 header div img { 
   width: 100%; 

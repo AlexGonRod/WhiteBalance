@@ -9,6 +9,7 @@
     "react-measure": "^3.0.0-rc.3",
     "react-photo-gallery": "^6.0.22",
     "react-plx": "^1.0.6",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1"
   },
   "scripts": {

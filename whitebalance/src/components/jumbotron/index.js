@@ -36,10 +36,10 @@ class Jumbotron extends Component {
             // <Plx className='MyJumbotron'
             //     parallaxData={ParallaxData}
             // >
-                <div class="jumbotron jumbotron-fluid">
-                    <div class="container">
-                        <h1 class="display-4">Fluid jumbotron</h1>
-                        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                <div id="jumbotron" className="jumbotron jumbotron-fluid">
+                    <div className="container-fluid">
+                    <h1 className="display-4 text-left text-bottom">UserName</h1>
+                    <small className="text-left">@Name·smallhotos·Followers·Following</small>
                     </div>
                 </div>
             //</Plx>

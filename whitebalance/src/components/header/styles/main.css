@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+#logo {
+  font-size: 20px;
+  font-family: 'Lobster', cursive;
+}
+
 .navbar.transparent.navbar-light {
   -webkit-box-shadow: 0px 0px;
     box-shadow: 0px 0px;
