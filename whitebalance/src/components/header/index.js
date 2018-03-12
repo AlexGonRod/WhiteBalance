@@ -22,7 +22,7 @@ class Header extends Component {
                             <a class="nav-link" href="#"><i class="fas fa-cloud-upload-alt"></i></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#"><i class="far fa-bell"></i><span class="badge badge-light">4</span></a>
+                            <a class="nav-link" href="#"><i class="far fa-bell"></i><span class="badge">4</span></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

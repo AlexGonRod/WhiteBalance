@@ -12,8 +12,9 @@ Here you have the opportunity to show your **passion.**
 
 ## PREWORK
 
-- ![alt text](docs/DataModel.png "DATA MODEL")
+- ![alt text](docs/Data.png "DATA MODEL")
 - ![alt text](docs/UML.png "UML")
+- ![alt text](docs/Flow.png "UML")
 - ![alt text](docs/SpringPlan.png "SPRING PLAN")
 
 - WhiteBalance (https://github.com/AlexGonRod/WhiteBalance)
