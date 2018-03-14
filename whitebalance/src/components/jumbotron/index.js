@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Plx from "react-plx";
 import './styles/main.css'
 
@@ -29,6 +29,7 @@ const ParallaxData = [
 ]
 
 
+
 class Jumbotron extends Component {
     render() {
         return (
@@ -38,14 +39,16 @@ class Jumbotron extends Component {
             // >
                 <div id="jumbotron" className="jumbotron jumbotron-fluid">
                     <div className="container-fluid">
-                    <h1 className="display-4 text-left text-bottom">UserName</h1>
-                    <small className="text-left">@Name·smallhotos·Followers·Following</small>
+                    <h1 className="display-4 text-left">UserName</h1>
+                    <p className="text-left">@Name·Followers·Following</p>
                     </div>
                 </div>
             //</Plx>
         )
     }
 }
+
+
 
 export default Jumbotron
 

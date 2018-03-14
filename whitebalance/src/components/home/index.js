@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import Login from '../login'
-import Categories from '../categories'
+import Following from '../following'
 import User from '../user'
 import Account from '../account'
 
@@ -15,7 +15,7 @@ class Home extends Component {
 
             <div>
                 <Route exact path="/" render={() => (
-                    <Categories />
+                    <Following />
                 )} />
                 <Route  path="/login" render={() => (
                     <Login />
