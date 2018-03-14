@@ -7,17 +7,42 @@ const api = {
         }
     },
 
-    _call(method, path, body) {
-        return rp({
+    _call(method, path, body, token) {
+        const options = {
             method,
             uri: `${this._baseUrl()}/${path}`,
-            body,
             json: true
-        })
+        }
+
+        if (body) options.body = body
+
+        if (token) options.headers = { authorization: `Bearer ${token}` }
+
+        return rp(options)
     },
 
-    list() {
-        return this._call('get', 'users')
+    login(username, password) {
+        return this._call('post', 'login', { username, password })
+    },
+
+    list(token) {
+        return this._call('get', 'users', undefined, token)
+    },
+
+    register(token, name, surname, email, username, password) {
+        return this._call('post', 'user', { name, surname, email, username, password }, token)
+    },
+
+    remove(id, username, password) {
+        return this._call('delete', `user/${id}`, { username, password })
+    },
+
+    retrieve(token, id) {
+        return this._call('get', `user/${id}`, undefined, token)
+    },
+
+    update(token, id, name, surname, email, newUsername, newPassword, username, password) {
+        return this._call('put', `user/${id}`, { name, surname, email, newUsername, newPassword, username, password }, token)
     }
 }
 

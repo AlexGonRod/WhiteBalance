@@ -7,7 +7,7 @@ class Following extends Component {
         return (
             <div>
 
-                <ImageList />
+                <ImageList users={this.props.users.data}/>
             </div>
         )
     }
