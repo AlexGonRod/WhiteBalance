@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const User = mongoose.model('images', {
-	id: String,
+	id: Number,
 	name: String,
 	username: String,
 	password: String,

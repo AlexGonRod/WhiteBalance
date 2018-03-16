@@ -7,7 +7,7 @@ class Following extends Component {
         return (
             <div>
 
-                <ImageList users={this.props.users.data}/>
+                <ImageList images={this.props.following.images} />
             </div>
         )
     }

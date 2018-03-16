@@ -12,28 +12,31 @@ class Home extends Component {
     constructor() {
         super()
         this.state = {
-            users:{}
+            users: {},
+            following: []
         }
     }
 
-componentWillMount() {
-    api.list()
-    .then(users => this.setState({users}))
-}
+    componentWillMount() {
+        api.listUser("5aa7e936f36d28207a6ef984")
+            .then(users => this.setState({ users }))
+
+        api.listFollowing()
+            .then(following => this.setState({ following }))
+    }
 
     render() {
         return (
-
             <div>
                 <Route exact path="/" render={() => (
-                    <Following users={this.state.users}/>
+                    <Following following={this.state.following}/>
                 )} />
                 <Route path="/login" render={() => (
                     <Login />
                 )} />
 
                 <Route path="/user" render={() => (
-                    <User users={this.state.users}/>
+                    <User users={this.state.users} />
                 )} />
 
                 <Route path="/account" render={() => (

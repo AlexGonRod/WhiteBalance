@@ -6,8 +6,8 @@ function User(props){
         return (
             <div>
                 
-                <Jumbotron />
-                <ImageList users={props.users.data}/>
+                <Jumbotron userdata={props.users} />
+                <ImageList images={props.users.images}/>
             </div>
         )
 }
