@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import api from '../../services/api'
-import Login from '../login';
-import Following from '../following';
-import User from '../user';
-import Account from '../account';
+import Login from '../login'
+import Following from '../following'
+import User from '../user'
+import Account from '../account'
 
 
 
@@ -13,29 +13,29 @@ class Home extends Component {
         super()
         this.state = {
             users: {},
-            following: []
+            following: {}
         }
     }
 
     componentWillMount() {
-        api.listUser("5aa7e936f36d28207a6ef984")
+        api.listUser("5aad319e734d1d1b8288cc6f")
             .then(users => this.setState({ users }))
 
-        api.listFollowing()
+        api.listFollowing("55aad319e734d1d1b8288cc6f")
             .then(following => this.setState({ following }))
-    }
+     }
 
     render() {
         return (
             <div>
-                <Route exact path="/" render={() => (
+                <Route exact path="/following" render={() => (
                     <Following following={this.state.following}/>
-                )} />
+                )} /> 
                 <Route path="/login" render={() => (
                     <Login />
                 )} />
 
-                <Route path="/user" render={() => (
+                <Route path="/" render={() => (
                     <User users={this.state.users} />
                 )} />
 

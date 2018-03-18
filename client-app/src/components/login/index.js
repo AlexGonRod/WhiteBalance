@@ -16,7 +16,7 @@ class Login extends React.Component {
                                 <input type="text" name="username" placeholder="Username" className="personalized-input" />
                                 <input type="password" name="password" placeholder="Password" className="personalized-input" />
                                 <br/>
-                                <button value="login" type="button" className="white-text button"><NavLink className="nav-link" to="/home">login</NavLink></button>
+                                <button value="login" type="button" className="white-text button"><NavLink className="nav-link" to="/">login</NavLink></button>
                                 
                             </form>
                         </div>

@@ -18,7 +18,7 @@ const api = {
     _call(method, path, body) {
         return rp({
             method,
-            uri: `${protocol}://${host}:${port}/${path}`,
+            uri: `${protocol}://${host}:${port}/users/${path}`,
             body,
             json: true,
             
@@ -26,11 +26,11 @@ const api = {
     },
 
     listUser(idUser) {
-        return this._call('get', `users/${idUser}`)
+        return this._call('get', `${idUser}`)
     },
 
     listFollowing(idUser) {
-        return this._call('get', `/${idUser}/following`)
+        return this._call('get', `${idUser}/following`)
     },
 }
 

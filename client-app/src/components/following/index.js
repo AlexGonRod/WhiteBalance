@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import ImageList from '../ImageList'
 
-class Following extends Component {
+function Following(props) {
 
-    render() {
         return (
             <div>
 
-                <ImageList images={this.props.following.images} />
+                <ImageList images={props.following.following} />
             </div>
         )
-    }
+    
 }
 
 export default Following

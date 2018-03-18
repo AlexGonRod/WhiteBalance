@@ -4,19 +4,23 @@ import './styles/main.css'
 
 
 function ImageList(props) {
-    console.log(props.images)
     return (
         <header>
             {props.images ? props.images.map(image => {
-                return <div className="overlay">
-                        <img src={image.image} alt="" />
-                        <span>Text</span>
-                    </div>
+                return <div>
+                        <img src={image.url} alt="" />
+                        
+                        </div>
+                    
                 }) : undefined}
         </header>
+
+       
     )
 
 }
+
+
 
 export default ImageList
 
