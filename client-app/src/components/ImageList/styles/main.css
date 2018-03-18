@@ -1,33 +1,56 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
-
-
-
-
-body { 
-  margin-top: 0; 
-  font-family: 'Raleway', sans-serif;
-}
 header { 
   
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+  -ms-flex-direction: column;
   -webkit-flex-flow: row wrap; 
   flex-flow: row wrap; 
   display: -webkit-box;
   display: flex;
-  overflow: hidden;
 }
-header div { 
+header .imagen { 
   -webkit-box-flex: auto;
   -ms-flex: auto;
   flex: auto; 
   width: 400px; 
-  
+  overflow: hidden;
+  cursor:pointer;
+  margin-top: 0;
 }
-header div img { 
+header .imagen img { 
   width: 100%; 
   height: auto; 
+}
+
+
+.imagen:hover .comments {
+    
+  transform: translateY(-35px);
+  opacity:1;
+  background-color: rgba(155, 155, 155, 0.9)
+} 
+
+
+
+header .imagen .comments {
+    position: absolute;
+    display: flex;
+    flex-flow: row;
+    padding: 10px;
+    height: 35px;
+    justify-content: space-between;
+    align-items: center; 
+    transform: translateY(0);
+    
+  transition: all .3s ease-in-out;
+  opacity:0;
+  overflow: hidden;
+  color:black;
+}
+
+.likes {
+    font-size: 20px;
 }
 
 @media screen and (max-width: 400px) {
@@ -35,3 +58,4 @@ header div img {
   header { padding: 0; }
   
 }
+

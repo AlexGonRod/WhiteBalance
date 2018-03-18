@@ -11,8 +11,19 @@ const logic = {
                 // if (!user) throw Error(`El usuario con id ${idUser} no existe`)
 
                 return User.findOne({ _id: idUser }).select('following')
+                
             })
+            return Promise.all([{following}])
+                .then(files => {
+                    files.forEach(file => {
+                        process(file.json)
+                    })
+                })
+                .catch(err => {
 
+                })
+
+                process()
     },
 
 

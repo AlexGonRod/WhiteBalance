@@ -6,7 +6,7 @@ function Following(props) {
         return (
             <div>
 
-                <ImageList images={props.following.following} />
+                {/* <ImageList images={props.following.following} /> */}
             </div>
         )
     

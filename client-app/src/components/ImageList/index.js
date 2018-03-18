@@ -2,45 +2,38 @@ import React, { Component } from 'react';
 import './styles/main.css'
 
 
-
 function ImageList(props) {
     return (
         <header>
+
             {props.images ? props.images.map(image => {
-                return <div>
-                        <img src={image.url} alt="" />
-                        
+                return <div className="imagen">
+                    <img src={image.url} alt={image.url} />
+                    <div className="comments">
+                        <div className="text">
+                            <p><small>Last updated 3 mins ago</small></p>
                         </div>
-                    
-                }) : undefined}
+                        <div className="text2">
+                            <p className="likes"><i class="far fa-heart"></i>   <i class="far fa-comment"></i></p>
+                        </div>
+                    </div>
+                </div>
+
+
+            }) : undefined}
         </header>
 
-       
+
     )
 
 }
 
 
-
 export default ImageList
 
- 
-/*
 
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-1.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-2.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-3.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-4.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-1.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-2.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-3.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-4.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-4.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-1.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-2.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-3.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-4.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-4.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-1.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-2.jpg" alt="" /></div>
-                <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-3.jpg" alt="" /></div>*/
+
+
+
+
+

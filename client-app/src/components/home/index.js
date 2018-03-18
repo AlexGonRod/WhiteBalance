@@ -21,16 +21,16 @@ class Home extends Component {
         api.listUser("5aad319e734d1d1b8288cc6f")
             .then(users => this.setState({ users }))
 
-        api.listFollowing("55aad319e734d1d1b8288cc6f")
-            .then(following => this.setState({ following }))
+        // api.listFollowing("55aad319e734d1d1b8288cc6f")
+        //     .then(following => this.setState({ following }))
      }
 
     render() {
         return (
             <div>
-                <Route exact path="/following" render={() => (
+                {/* <Route exact path="/following" render={() => (
                     <Following following={this.state.following}/>
-                )} /> 
+                )} />  */}
                 <Route path="/login" render={() => (
                     <Login />
                 )} />
