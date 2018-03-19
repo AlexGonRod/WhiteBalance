@@ -1,0 +1,56 @@
+.F_data { 
+  flex-flow: row wrap; 
+  display: flex;
+}
+.F_data .imagen { 
+  
+  flex: auto; 
+  width: 400px; 
+  overflow: hidden;
+  cursor:pointer;
+  margin-top: 0;
+}
+.F_data .imagen img { 
+  width: 100%; 
+  height: auto; 
+}
+
+.username {
+  position: absolute;
+  
+}
+
+
+.imagen:hover .comments {
+    
+  transform: translateY(-35px);
+  opacity:1;
+  background-color: rgba(155, 155, 155, 0.9)
+} 
+.F_data .imagen .comments {
+    position: absolute;
+    display: flex;
+    flex-flow: row wrap;
+   
+    padding: 10px;
+    height: 35px;
+    justify-content: space-between;
+    align-items: center; 
+    transform: translateY(0);
+    
+  transition: all .3s ease-in-out;
+  opacity:0;
+  overflow: hidden;
+  color:black;
+}
+
+.likes {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 400px) {
+  .F_data div { margin: 0; }
+  .F_data { padding: 0; }
+  
+}
+

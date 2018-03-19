@@ -1,15 +1,31 @@
 import React, { Component } from 'react'
-import ImageList from '../ImageList'
+import ListFollow from '../listFollow'
+import api from '../../services/api'
 
-function Following(props) {
+class Following extends Component {
+    constructor() {
+        super()
+        this.state = {
+            following: []
+        }
+    }
 
+
+    componentWillMount() {
+        api.listFollowing("5aad319e734d1d1b8288cc6f")
+            .then(following => { this.setState({ following }) })
+    }
+
+    render() {
         return (
             <div>
-
-                {/* <ImageList images={props.following.following} /> */}
+                <ListFollow userdata={this.state.following} />
             </div>
         )
-    
+    }
+
+
+
 }
 
 export default Following

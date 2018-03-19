@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Plx from "react-plx";
+//import Plx from "react-plx";
 import './styles/main.css'
 
 const ParallaxData = [

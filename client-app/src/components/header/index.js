@@ -17,7 +17,7 @@ function Header(props) {
 			<div className="collapse navbar-collapse">
 				<ul className="navbar-nav">
 					<li className="nav-item" />
-					<NavLink id="follow" className="nav-link" to="/">Following</NavLink>
+					<NavLink id="follow" className="nav-link" to="/following">Following</NavLink>
 				</ul>
             
 				<SearchWithRouter />

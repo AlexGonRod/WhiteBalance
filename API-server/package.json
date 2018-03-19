@@ -10,6 +10,7 @@
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.0",
     "mocha": "^5.0.4",
     "mongoose": "^5.0.10",
     "uuid-v4": "^0.1.0"

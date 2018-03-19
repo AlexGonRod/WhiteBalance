@@ -10,10 +10,8 @@ class App extends Component {
     return (
       <HashRouter>
         <div className="App">
-          
           <Header />
           <Home /> 
-
         </div>
       </HashRouter>
     );

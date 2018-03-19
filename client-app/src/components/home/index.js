@@ -12,8 +12,7 @@ class Home extends Component {
     constructor() {
         super()
         this.state = {
-            users: {},
-            following: {}
+            users: {}
         }
     }
 
@@ -21,24 +20,24 @@ class Home extends Component {
         api.listUser("5aad319e734d1d1b8288cc6f")
             .then(users => this.setState({ users }))
 
-        // api.listFollowing("55aad319e734d1d1b8288cc6f")
-        //     .then(following => this.setState({ following }))
      }
 
     render() {
         return (
             <div>
-                {/* <Route exact path="/following" render={() => (
-                    <Following following={this.state.following}/>
-                )} />  */}
-                <Route path="/login" render={() => (
-                    <Login />
-                )} />
 
-                <Route path="/" render={() => (
+                <Route exact path="/" render={() => (
                     <User users={this.state.users} />
                 )} />
 
+                 <Route  path="/following" render={() => (
+                    <Following />
+                )} />  
+
+                <Route path="/login" render={() => (
+                    <Login />
+                )} />
+        
                 <Route path="/account" render={() => (
                     <Account />
                 )} />

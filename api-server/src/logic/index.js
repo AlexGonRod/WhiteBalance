@@ -1,95 +1,93 @@
 const { User } = require('../models')
-const ObjectId = require('mongodb').ObjectID;
+
 
 const logic = {
 
-    getUserFollowing(idUser) {
-        validate(idUser)
-
-        return User.findOne({ _id: idUser })
-            .then(user => {
-                // if (!user) throw Error(`El usuario con id ${idUser} no existe`)
-
-                return User.findOne({ _id: idUser }).select('following')
-                
+    login(username, password) {
+        return Promise.resolve()
+            .then(() => {
+                validate({ username, password })
+                return User.findOne({ username, password })
             })
-            return Promise.all([{following}])
-                .then(files => {
-                    files.forEach(file => {
-                        process(file.json)
-                    })
-                })
-                .catch(err => {
+            
+            .then(user => {
+                if (!user) throw Error('username and/or password wrong')
 
-                })
-
-                process()
-    },
-
-
-    getUser(idUser) {
-        validate(idUser)
-
-        return User.findOne({ _id: idUser })
-
+                return true
+            })
     },
 
     register(name, username, password) {
-
-        Promise.resolve()
+        return Promise.resolve()
             .then(() => {
-                validate( {name, username, password })
-
+                validate({ name, username, password })
                 return User.findOne({ username })
             })
             .then(user => {
                 if (user) throw Error(`This username already exists`)
 
-                return User.insert({ name, username, password })
-            })
-            .catch(() => {
-                console.log('errorrrrrrrres')
+                return User.create({ name, username, password })
             })
 
     },
 
-    update(idUser, name, username, password, newName, newUsername, newPassword) {
+    getUser(_id) {
+        validate(_id)
 
-        return Promise.all()
+        return User.findOne({ _id: _id })
+
+    },
+
+    getUserFollowing(_id) {
+        validate(_id)
+
+        return User.findOne({ _id: _id }, { following: 1, _id: 0 })
+            .then(following => {
+                return User.find({ _id: { $in: following.following } })
+
+            })
+            .catch(err => err.message)
+    },
+
+    update(_id, name, username, password, newName, newUsername, newPassword) {
+
+        return Promise.resolve()
             .then(() => {
-                validate({ idUser, name, username, password, newName, newUsername, newPassword })
-
+                validate({ _id, name, username, password, newName, newUsername, newPassword })
+                console.log(name)
                 return User.findOne({ username: newUsername })
             })
             .then(user => {
                 if (user) throw Error('username already exists')
-                return User.findOne({ idUser })
+                return User.findOne({ _id: _id })
             })
             .then(user => {
-                // if(user.username !== username || user.password !==)
-                return User.updateOne({ idUser }, { $set: { name: newName, username: newUsername, password: newPassword } })
+                if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
+
+                return User.updateOne({ _id }, { name: newName, username: newUsername, password: newPassword })
             })
+            .catch(err => err.message)
     },
 
-    remove(idUser){
-        
-        Promise.resolve()
-        .then(() => {
-            validate(idUser)
-            
-        return User.findOne({idUser})
-        
-        
-        })
-        .then(user => {
-            
-            if(!user) throw Error('Username does not exist')
+    remove(_id, username, password) {
+        return Promise.resolve()
+            .then(() => {
+                validate({ _id, username, password })
 
-            return User.remove({ _id: idUser})
-            
-        })
-        .catch(() => console.log('erorrrrrrr'))
-        
+                return User.findOne({ _id: _id })
+            })
+            .then(user => {
+
+                if (!user) throw Error('Username does not exist')
+
+                if (user._id.toString() !== _id.toString()) throw Error('user id does not match the one provided')
+
+                if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
+
+                return user.remove()
+
+
+            })
     }
 
 }
