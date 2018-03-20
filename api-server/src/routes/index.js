@@ -22,6 +22,7 @@ function jwtValidate(req, res, token) {
         jwt.verify(token, secret)
 
         next()
+        
     } catch (err) {
         res.json(err.message)
 
@@ -41,7 +42,7 @@ routes.post('/login', jsonBodyParser, (req, res) => {
         .catch(err => res.json(err.message))
 })
 
-routes.post('/create', [jwtValidate, jsonBodyParser], (req, res) => {
+routes.post('/create', jsonBodyParser, (req, res) => {
     const { body: { name, username, password } } = req
 
     logic.register(name, username, password)
@@ -52,11 +53,11 @@ routes.post('/create', [jwtValidate, jsonBodyParser], (req, res) => {
         .catch(err => res.json(err.message))
 })
 
-routes.get('/:_id/following', jwtValidate, (req, res) => {
+routes.get('/:id/following', jwtValidate, (req, res) => {
 
-    const { params: { _id } } = req
+    const { params: { id } } = req
 
-    logic.getUserFollowing(_id)
+    logic.getUserFollowing(id)
         .then((data) => {
             return res.json(data)
         })
@@ -64,10 +65,10 @@ routes.get('/:_id/following', jwtValidate, (req, res) => {
 
 })
 
-routes.get('/:_id', jwtValidate, (req, res) => {
-    const { params: { _id } } = req
+routes.get('/:id', jwtValidate, (req, res) => {
+    const { params: { id } } = req
 
-    logic.getUser(_id)
+    logic.getUser(id)
         .then((data) => {
             return res.json(data)
         })
@@ -75,11 +76,11 @@ routes.get('/:_id', jwtValidate, (req, res) => {
 })
 
 
-routes.put('/:_id/update', [jwtValidate, jsonBodyParser], (req, res) => {
+routes.put('/:id/update', [jwtValidate, jsonBodyParser], (req, res) => {
     const { body: { name, username, password, newName, newUsername, newPassword } } = req
-    const { params: { _id } } = req
+    const { params: { id } } = req
 
-    logic.update(_id, name, username, password, newName, newUsername, newPassword)
+    logic.update(id, name, username, password, newName, newUsername, newPassword)
         .then((data) => {
             return res.json(data)
         })
@@ -87,12 +88,12 @@ routes.put('/:_id/update', [jwtValidate, jsonBodyParser], (req, res) => {
 })
 
 
-routes.delete('/:_id/delete', [jwtValidate, jsonBodyParser], (req, res) => {
-    //const {body:{ username, password } } =req
-    const { params: { _id } } = req
+routes.delete('/:id/delete', [jwtValidate, jsonBodyParser], (req, res) => {
+    
+    const { params: { id } } = req
     const { body: { username, password } } = req
 
-    logic.remove(_id, username, password)
+    logic.remove(id, username, password)
         .then(() => {
             return res.json()
         })

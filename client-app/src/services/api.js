@@ -25,6 +25,15 @@ const api = {
         })
     },
 
+    login(username, password) {
+        return this._call('post', '/login')
+    },
+
+    create() {
+        return this._call('post', '/create')
+    },
+
+
     listUser(idUser) {
         return this._call('get', `${idUser}`)
     },
@@ -32,6 +41,16 @@ const api = {
     listFollowing(idUser) {
         return this._call('get', `${idUser}/following`)
     },
+
+    update(_id) {
+        return this._call('post', `${_id}/update`)
+    },
+
+    delete(_id) {
+        return this._call('post', `${_id}/delete`)
+    }
+
+
 }
 
 

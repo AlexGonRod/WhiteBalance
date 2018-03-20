@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import api from '../../services/api'
-import Login from '../login'
+import Register from '../register'
 import Following from '../following'
 import User from '../user'
 import Account from '../account'
@@ -34,8 +34,8 @@ class Home extends Component {
                     <Following />
                 )} />  
 
-                <Route path="/login" render={() => (
-                    <Login />
+                <Route path="/register" render={() => (
+                    <Register />
                 )} />
         
                 <Route path="/account" render={() => (

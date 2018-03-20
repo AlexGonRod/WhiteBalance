@@ -8,11 +8,11 @@ function ListFollow(props) {
     //  console.log(username)
 
     if (props.userdata)
-
+        console.log(Object.keys(props.userdata))
         return (
             <header >
                 
-                    {props.userdata.map(username => {
+                {Object.keys(props.userdata).length > 0 ? props.userdata.map(username => {
                         return (
                             <div className="F_data">
                                 {username.images ? username.images.map(image => {
@@ -34,7 +34,7 @@ function ListFollow(props) {
                                 }
                             </div>
                         )
-                    })
+                    }) : undefined
                     }
                 
             </header>
