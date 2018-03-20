@@ -8,51 +8,47 @@ const port = 5000
 
 const api = {
 
-    // _baseUrl() {
-    //     with(this) {
-    //         return 
-
-    //     }
-    // },
-
-    _call(method, path, body) {
-        return rp({
+    _call(method, path, body, token) {
+        const options = {
             method,
             uri: `${protocol}://${host}:${port}/users/${path}`,
             body,
             json: true,
-            
-        })
+        }
+
+        if (body) options.body = body
+
+        if (token) options.headers = { authorization: `Bearer ${token}` }
+
+        return rp(options)
     },
 
     login(username, password) {
-        return this._call('post', '/login')
+        return this._call('post', '/login', { username, password })
     },
 
-    create() {
-        return this._call('post', '/create')
+    create(name, username, password) {
+        return this._call('post', '/create', { name, username, password })
     },
 
 
-    listUser(idUser) {
-        return this._call('get', `${idUser}`)
+    listUser(id, token) {
+        return this._call('get', id, undefined, token)
     },
 
-    listFollowing(idUser) {
-        return this._call('get', `${idUser}/following`)
+    listFollowing(id, token) {
+        return this._call('get', `${id}/following`, undefined, token)
     },
 
-    update(_id) {
-        return this._call('post', `${_id}/update`)
+    update(token, id, name, username, password, newName, newUsername, newPassword) {
+        return this._call('post', `${id}/update`)
     },
 
-    delete(_id) {
-        return this._call('post', `${_id}/delete`)
+    delete(id, username, password) {
+        return this._call('post', `${id}/delete`)
     }
 
 
 }
-
-
 
 export default api;

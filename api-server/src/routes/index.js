@@ -1,4 +1,3 @@
-
 const express = require('express')
 const logic = require('../logic')
 const bodyParser = require('body-parser')
@@ -13,7 +12,7 @@ const { JWT_SECRET: secret, JWT_EXP: expiration } = process.env
 const expiresIn = parseInt(expiration)
 
 
-function jwtValidate(req, res, token) {
+function jwtValidate(req, res, next) {
     const auth = req.get('authorization')
 
     try {
@@ -22,7 +21,7 @@ function jwtValidate(req, res, token) {
         jwt.verify(token, secret)
 
         next()
-        
+
     } catch (err) {
         res.json(err.message)
 
@@ -37,7 +36,7 @@ routes.post('/login', jsonBodyParser, (req, res) => {
         .then(() => {
             const token = jwt.sign({ username }, secret, { expiresIn })
 
-            return res.json({token})
+            return res.json({ token })
         })
         .catch(err => res.json(err.message))
 })
@@ -89,7 +88,7 @@ routes.put('/:id/update', [jwtValidate, jsonBodyParser], (req, res) => {
 
 
 routes.delete('/:id/delete', [jwtValidate, jsonBodyParser], (req, res) => {
-    
+
     const { params: { id } } = req
     const { body: { username, password } } = req
 

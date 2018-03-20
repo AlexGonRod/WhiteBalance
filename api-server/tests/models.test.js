@@ -1,18 +1,21 @@
 const mongoose = require('mongoose')
-require('dotenv').config()
-
 const assert = require('assert')
 const { User, Image } = require('../src/models')
-
-const { MONGO_PORT, MONGO_HOST, MONGO_DB } = process.env
 
 
 describe('models', () => {
     before(() => {
-        return mongoose.connect(`mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`)
+        return mongoose.connect('mongodb://localhost/white-balance-models-test')
     })
 
-    describe('create user with images and followings', () =>{
+    beforeEach(() => {
+        return Promise.all([
+            User.remove(),
+            Image.remove()
+        ])
+    })
+
+    describe('create user with images and followings', () => {
         let user, image, image2, following, following2
 
         before(() => {
@@ -39,41 +42,40 @@ describe('models', () => {
                 following.save().then(_follower => following = _follower),
                 following2.save().then(_follower2 => following2 = _follower2)
             ])
+                .then(() => {
+                    image = new Image({
+                        url: 'http://images.com/123123'
+                    })
 
-            .then(() => {
-                image = new Image({
-                    url: 'http://images.com/1234'
+                    image2 = new Image({
+                        url: 'http://images.com/4567456'
+                    })
+
+                    user.images = []
+
+                    user.images.push(image)
+                    user.images.push(image2)
+
+                    return user.save()
                 })
-                image2 = new Image({
-                    url: 'http://images.com/4356'
+                .then(user => {
+                    user.following = []
+
+                    user.following.push(following._id)
+                    user.following.push(following2._id)
+
+                    return user.save()
                 })
+                .then(user => {
+                    const id = user._id.toString()
 
-                user.images = []
-
-                user.images.push(image)
-                user.images.push(image2)
-
-                return user.save()
-            })
-            .then(user => {
-                user.following = []
-
-                user.following.push(following._id)
-                user.following.push(following2._id)
-
-                return user.save()
-            })
-
-            .then(user => {
-                const id = user._id.toString()
-
-                return User.findOne({ _id: id})
-            })
-            .then(_user => user = _user)
+                    return User.findOne({ _id: id })
+                })
+                .then(_user => user = _user)
         })
 
         it('should create user with images and followings', () => {
-            assert(user, 'should image be created')
+            assert(user, 'should user be created')
 
             assert(image, 'should image be created')
 
@@ -93,7 +95,11 @@ describe('models', () => {
 
             assert.equal(_image._id.toString(), image._id.toString(), 'should image match')
 
-            assert.equal(_image2._id.toString(), image2._id.toString(), 'should image 2 match')
+            assert.equal(_image.url, image.url, 'should image url match')
+
+            assert.equal(_image2._id.toString(), image2._id.toString(), 'should image2 match')
+
+            assert.equal(_image2.url, image2.url, 'should image2 match')
 
             const [following_id, following_id2] = user.following
 
@@ -103,10 +109,9 @@ describe('models', () => {
         })
     })
 
-    // after(done => {
-    //     return mongoose.connection.db.dropDatabase(() => {
-    //         mongoose.connection.close(done)
-    //     })
-    // })
+    after(done => {
+        return mongoose.connection.db.dropDatabase(() => {
+            mongoose.connection.close(done)
+        })
+    })
 })
-

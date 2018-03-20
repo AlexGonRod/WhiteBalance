@@ -10,7 +10,7 @@ const logic = {
 
                 return User.findOne({ username, password })
             })
-            
+
             .then(user => {
                 if (!user) throw Error('username and/or password wrong')
 
@@ -33,21 +33,28 @@ const logic = {
     },
 
     getUser(id) {
-        validate(id)
+        return Promise.resolve()
+            .then(() => {
+                validate(id)
 
-        return User.findOne({ id: id })
-
+                return User.findOne({ _id: id })
+            })
     },
 
     getUserFollowing(id) {
-        validate(id)
+        return Promise.resolve()
+        .then(() => {
 
-        return User.findOne({ id: id }, { following: 1, id: 0 })
-            .then(following => {
-                return User.find({ id: { $in: following.following } })
+            validate(id)
+    
+            return User.findOne({ _id: id }, { following: 1, _id: 0 })
+                .then(following => {
+                    return User.find({ _id: { $in: following.following } })
+    
+                })
+                .catch(err => err.message)
 
-            })
-            .catch(err => err.message)
+        })
     },
 
     update(id, name, username, password, newName, newUsername, newPassword) {
@@ -55,17 +62,17 @@ const logic = {
         return Promise.resolve()
             .then(() => {
                 validate({ id, name, username, password, newName, newUsername, newPassword })
-                console.log(name)
+               
                 return User.findOne({ username: newUsername })
             })
             .then(user => {
                 if (user) throw Error('username already exists')
-                return User.findOne({ id: id })
+                return User.findOne({ _id: id })
             })
             .then(user => {
                 if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
 
-                return User.updateOne({ id }, { name: newName, username: newUsername, password: newPassword })
+                return User.updateOne({ _id: id }, { name: newName, username: newUsername, password: newPassword })
             })
             .catch(err => err.message)
     },
@@ -73,15 +80,15 @@ const logic = {
     remove(id, username, password) {
         return Promise.resolve()
             .then(() => {
-                validate({ _id, username, password })
+                validate({ id, username, password })
 
-                return User.findOne({ _id: _id })
+                return User.findOne({ _id: id })
             })
             .then(user => {
 
                 if (!user) throw Error('Username does not exist')
 
-                if (user._id.toString() !== _id.toString()) throw Error('user id does not match the one provided')
+                if (user._id.toString() !== id.toString()) throw Error('user id does not match the one provided')
 
                 if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
 

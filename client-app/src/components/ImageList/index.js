@@ -8,7 +8,7 @@ function ImageList(props) {
 
             {props.images ? props.images.map(image => {
                 return <div className="imagen">
-                    <img src={image.url} alt={image.url} key={image.url} />
+                    <img  src={image.url} alt={image.url} key={image.url} />
                     <div className="comments">
                         <div className="text">
                             <p><small>Last updated 3 mins ago</small></p>

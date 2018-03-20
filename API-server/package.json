@@ -21,7 +21,8 @@
   },
   "scripts": {
     "test": "mocha tests",
-    "start": "nodemon ."
+    "start": "node .",
+    "dev-watch": "nodemon ."
   },
   "keywords": [],
   "author": "",
