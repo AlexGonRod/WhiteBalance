@@ -64,8 +64,12 @@ a {
   border: 1px solid grey;
   border-radius: 5px;
   margin: 15px;
+  cursor: pointer;
 }  
 
+.registered {
+  cursor: pointer;
+}
 
 .personalized-input:focus{
   outline: transparent;

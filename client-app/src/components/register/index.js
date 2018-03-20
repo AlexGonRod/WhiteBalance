@@ -1,10 +1,9 @@
-import React from 'react'
-import { NavLink, withRouter } from 'react-router-dom'
+import React, { Component } from 'react'
 import './styles/main.css'
 import api from '../../services/api'
 
 
-class Register extends React.Component {
+class Register extends Component {
     constructor() {
         super()
         this.state = {
@@ -53,6 +52,13 @@ class Register extends React.Component {
         }
     }
 
+  
+    showRegister() {
+        this.setState({showRegister : true})
+    }
+    
+    
+
 
 
     render() {
@@ -60,26 +66,25 @@ class Register extends React.Component {
 
             <div className="column-gray center-text centered-box column">
                 <form id="register">
-                    <input type="text" name="name" id="name" placeholder="Name" className="personalized-input" onChange={this.keepInputName} value={this.state.nameInput}>{this.state.showRegister}<input />
-                        <input type="text" name="username" id="username" placeholder="Username" className="personalized-input" onChange={this.keepInputUsername} value={this.state.usernameInput} />
-                        <input type="password" name="password" id="password" placeholder="Password" className="personalized-input" onChange={this.keepInputPassword} value={this.state.passwordInput} />
-                        <input type="password" name="validatePassword" id="validatePassword" placeholder="Retype Password" className="personalized-input" onChange={this.keepInputPassword2} value={this.state.passwordInput2} />
-                        <br />
-                        <button value="register" type="submit" className="white-text button"
-                            onClick={e => { e.preventDefault(); this.handleSubmit() }}>{"Register"}</button>
-                        <button value="login" type="submit" className="white-text button"
-                            onClick={e => { e.preventDefault(); this.handleSubmit() }}>{"Login"}</button>
-                        <h3>{(this.state.showError) ? "Some fields required" : ""}</h3>
+                    {(this.state.showRegister) ? <input type="text" name="name" id="name" placeholder="Name" className="personalized-input" onChange={this.keepInputName} value={this.state.nameInput} /> : ""}
+                    <input type="text" name="username" id="username" placeholder="Username" className="personalized-input" onChange={this.keepInputUsername} value={this.state.usernameInput} />
+                    <input type="password" name="password" id="password" placeholder="Password" className="personalized-input" onChange={this.keepInputPassword} value={this.state.passwordInput} />
+                    {(this.state.showRegister) ? <input type="password" name="validatePassword" id="validatePassword" placeholder="Retype Password" className="personalized-input" onChange={this.keepInputPassword2} value={this.state.passwordInput2} /> : ""}
+                    <br />
+                    {(this.state.showRegister) ? <button value="register" type="submit" className="white-text button" onClick={this.handleSubmit}>{"Register"}</button> : ""}
+                    {(!this.state.showRegister) ?<button value="login" type="submit" className="white-text button" onClick={this.handleSubmitLogin}>{"Login"}</button> : ""}
+                    <h6 className="registered" onClick={ (e) => { e.PreventDefault(); this.showRegister() }}>{(!this.state.showRegister) ? "Not Registered?" : ""}</h6>
+                    <h6>{(this.state.showError) ? "Some fields required" : ""}</h6>
 
                 </form>
 
 
             </div>
 
-                );
-            }
-        };
-        
-        export default Register
-        
-        
+        );
+    }
+};
+
+export default Register
+
+

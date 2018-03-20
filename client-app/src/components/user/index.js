@@ -3,7 +3,7 @@ import Jumbotron from '../jumbotron'
 import ImageList from '../ImageList'
 import api from '../../services/api'
 
-class User extends React.Component {
+class User extends Component {
     constructor() {
         super()
         this.state = {

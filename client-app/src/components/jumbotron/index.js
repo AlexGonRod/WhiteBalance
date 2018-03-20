@@ -2,31 +2,31 @@ import React, { Component } from 'react'
 //import Plx from "react-plx";
 import './styles/main.css'
 
-const ParallaxData = [
-    {
-        start: 0,
-        end: 100,
-        properties: [
-            {
-                startValue: 1.1,
-                endValue:1,
-                property: "scale"
-            },
-        ]
-    },
-    {
-        start: 100,
-        end: 200,
-        properties: [
+// const ParallaxData = [
+//     {
+//         start: 0,
+//         end: 100,
+//         properties: [
+//             {
+//                 startValue: 1.1,
+//                 endValue:1,
+//                 property: "scale"
+//             },
+//         ]
+//     },
+//     {
+//         start: 100,
+//         end: 200,
+//         properties: [
 
-            {
-                startValue: 1,
-                endValue: 0,
-                property: "opacity"
-            }
-        ]
-    },
-]
+//             {
+//                 startValue: 1,
+//                 endValue: 0,
+//                 property: "opacity"
+//             }
+//         ]
+//     },
+// ]
 
 
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import api from '../../services/api'
 import Register from '../register'
-import Login from '../login'
 import Following from '../following'
 import User from '../user'
 import Account from '../account'
