@@ -8,7 +8,7 @@ const port = 5000
 
 const api = {
 
-    _call(method, path, body, token) {
+    _call(method, path, body) {
         const options = {
             method,
             uri: `${protocol}://${host}:${port}/users/${path}`,
@@ -16,37 +16,49 @@ const api = {
             json: true,
         }
 
-        if (body) options.body = body
 
-        if (token) options.headers = { authorization: `Bearer ${token}` }
+        if (this.getToken()) options.headers = { authorization: `Bearer ${this.getToken()}` }
 
         return rp(options)
     },
 
     login(username, password) {
-        return this._call('post', '/login', { username, password })
+        return this._call('post', 'login', { username, password })
+            .then(data => {
+                this.setToken(data.token)
+                return data
+            })
     },
 
     create(name, username, password) {
-        return this._call('post', '/create', { name, username, password })
+        return this._call('post', 'create', { name, username, password })
     },
 
 
-    listUser(id, token) {
-        return this._call('get', id, undefined, token)
+    listUser() {
+        return this._call('get', this.getToken(), undefined)
     },
 
-    listFollowing(id, token) {
-        return this._call('get', `${id}/following`, undefined, token)
+    listFollowing(id) {
+        return this._call('get', `${this.getToken()}/following`, undefined)
     },
 
-    update(token, id, name, username, password, newName, newUsername, newPassword) {
-        return this._call('post', `${id}/update`)
+    update(id, name, username, password, newName, newUsername, newPassword) {
+        return this._call('post', `${this.getToken()}/update`, { name, username, password, newName, newUsername, newPassword })
     },
 
     delete(id, username, password) {
-        return this._call('post', `${id}/delete`)
+        return this._call('post', `${this.getToken()}/delete`)
+    },
+
+    setToken(token) {
+        localStorage.setItem("token", token)
+    },
+
+    getToken() {
+        return localStorage["token"]
     }
+
 
 
 }

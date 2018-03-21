@@ -12,8 +12,8 @@ class User extends Component {
     }
 
     componentDidMount() {
-        const id = this.props.match.params.idUser
-        api.listUser(id, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFsZXhpdG8iLCJpYXQiOjE1MjE1NDEwMDMsImV4cCI6MTUyMTY5MTAwM30.KKcAvkp7z--ZNAmPW6sWv2g4-DdqweWQEk7SlmVhps4")
+
+        api.listUser()
             .then(user => {
                 this.setState({ user })
             })
@@ -23,7 +23,6 @@ class User extends Component {
     render() {
         return (
             <div>
-
                 <Jumbotron userdata={this.state.user} />
                 <ImageList images={this.state.user.images} />
             </div >

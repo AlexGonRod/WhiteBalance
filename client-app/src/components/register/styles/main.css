@@ -67,7 +67,12 @@ a {
   cursor: pointer;
 }  
 
-.registered {
+.registered, .logged {
+  background: transparent;
+  font-weight: bold;
+  font-size: 14pt;
+  color: grey;
+  border: none;
   cursor: pointer;
 }
 

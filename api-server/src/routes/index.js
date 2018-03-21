@@ -33,9 +33,9 @@ routes.post('/login', jsonBodyParser, (req, res) => {
     const { body: { username, password } } = req
 
     logic.login(username, password)
-        .then(() => {
-            const token = jwt.sign({ username }, secret, { expiresIn })
+        .then(user => {
 
+            const token = jwt.sign({ id: user._id }, secret, { expiresIn })
             return res.json({ token })
         })
         .catch(err => res.json(err.message))
@@ -52,24 +52,27 @@ routes.post('/create', jsonBodyParser, (req, res) => {
         .catch(err => res.json(err.message))
 })
 
-routes.get('/:id/following', jwtValidate, (req, res) => {
+routes.get('/:token/following', jwtValidate, (req, res) => {
 
-    const { params: { id } } = req
+    const { params: { token } } = req
+    const {id } = jwt.verify(token, secret)
+    console.log(id)
 
     logic.getUserFollowing(id)
         .then((data) => {
-            return res.json(data)
+            res.json(data)
         })
         .catch(err => res.json(err.message))
 
 })
 
-routes.get('/:id', jwtValidate, (req, res) => {
-    const { params: { id } } = req
+routes.get('/:token', jwtValidate, (req, res) => {
+    const { params: { token } } = req
+    const { id } = jwt.verify(token, secret)
 
     logic.getUser(id)
         .then((data) => {
-            return res.json(data)
+            res.json(data)
         })
         .catch(err => res.json(err.message))
 })
@@ -98,5 +101,6 @@ routes.delete('/:id/delete', [jwtValidate, jsonBodyParser], (req, res) => {
         })
         .catch(err => res.json(err.message))
 })
+
 
 module.exports = routes

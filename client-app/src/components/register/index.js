@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import './styles/main.css'
 import api from '../../services/api'
 
@@ -15,7 +16,6 @@ class Register extends Component {
             showRegister: false
         }
     }
-
 
     keepInputName = (e) => {
         this.setState({ nameInput: e.target.value })
@@ -37,29 +37,43 @@ class Register extends Component {
 
     }
 
-    handleSubmit() {
+    handleSubmit = (e) => {
+        e.preventDefault()
         const { nameInput, usernameInput, passwordInput, passwordInput2 } = this.state
 
         if (passwordInput !== passwordInput2 && nameInput === "" && usernameInput === "" && passwordInput === "") {
+            this.setState({ showError: true })
+
+        } else {
             api.create(nameInput, usernameInput, passwordInput)
                 .then(user => {
-                    this.setState({ showError: false })
 
-                    this.props.history.push(`/${user._id}`)
+                    this.props.history.push(`/user`)
                 })
-        } else {
-            this.setState({ showError: true })
         }
     }
 
-  
-    showRegister() {
-        this.setState({showRegister : true})
+    handleSubmitLogin = (e) => {
+        e.preventDefault()
+        const { state: { usernameInput, passwordInput } } = this
+
+        if (usernameInput === "" && passwordInput === "") {
+            this.setState({ showError: true })
+
+
+        } else {
+            api.login(usernameInput, passwordInput)
+                .then(user=> {
+                        this.props.history.push(`/user`)
+                })
+        }
     }
-    
-    
 
 
+    showRegister = (e) => {
+        e.preventDefault()
+        { !this.state.showRegister ? this.setState({ showRegister: true }) : this.setState({ showRegister: false }) }
+    }
 
     render() {
         return (
@@ -72,8 +86,10 @@ class Register extends Component {
                     {(this.state.showRegister) ? <input type="password" name="validatePassword" id="validatePassword" placeholder="Retype Password" className="personalized-input" onChange={this.keepInputPassword2} value={this.state.passwordInput2} /> : ""}
                     <br />
                     {(this.state.showRegister) ? <button value="register" type="submit" className="white-text button" onClick={this.handleSubmit}>{"Register"}</button> : ""}
-                    {(!this.state.showRegister) ?<button value="login" type="submit" className="white-text button" onClick={this.handleSubmitLogin}>{"Login"}</button> : ""}
-                    <h6 className="registered" onClick={ (e) => { e.PreventDefault(); this.showRegister() }}>{(!this.state.showRegister) ? "Not Registered?" : ""}</h6>
+                    {(!this.state.showRegister) ? <button value="login" type="submit" className="white-text button" onClick={this.handleSubmitLogin}>{"Login"}</button> : ""}
+                    <button className="registered" onClick={this.showRegister}>{(!this.state.showRegister) ? "Not Registered?" : ""}</button>
+                    <button className="logged" onClick={this.showRegister}>{(this.state.showRegister) ? "Log in?" : ""}</button>
+
                     <h6>{(this.state.showError) ? "Some fields required" : ""}</h6>
 
                 </form>
@@ -85,6 +101,7 @@ class Register extends Component {
     }
 };
 
-export default Register
+const RegisterWithRouter = withRouter(Register)
+export default RegisterWithRouter
 
 

@@ -10,12 +10,12 @@ const logic = {
 
                 return User.findOne({ username, password })
             })
-
             .then(user => {
                 if (!user) throw Error('username and/or password wrong')
 
-                return true
+                return user
             })
+
     },
 
     register(name, username, password) {
@@ -33,28 +33,31 @@ const logic = {
     },
 
     getUser(id) {
-        return Promise.resolve()
-            .then(() => {
-                validate(id)
+        return new Promise((resolve, reject) => {
+            validate(id)
 
-                return User.findOne({ _id: id })
-            })
+            User.findOne({ _id: id })
+                .then(resolve)
+                .catch(reject)
+        })
+
+
     },
 
     getUserFollowing(id) {
         return Promise.resolve()
-        .then(() => {
+            .then(() => {
 
-            validate(id)
-    
-            return User.findOne({ _id: id }, { following: 1, _id: 0 })
-                .then(following => {
-                    return User.find({ _id: { $in: following.following } })
-    
-                })
-                .catch(err => err.message)
+                validate(id)
 
-        })
+                return User.findOne({ _id: id }, { following: 1, _id: 0 })
+                    .then(following => {
+                        return User.find({ _id: { $in: following.following } })
+
+                    })
+                    .catch(err => err.message)
+
+            })
     },
 
     update(id, name, username, password, newName, newUsername, newPassword) {
@@ -62,7 +65,7 @@ const logic = {
         return Promise.resolve()
             .then(() => {
                 validate({ id, name, username, password, newName, newUsername, newPassword })
-               
+
                 return User.findOne({ username: newUsername })
             })
             .then(user => {

@@ -23,7 +23,7 @@
 
 .imagen:hover .comments {
     
-  transform: translateY(-35px);
+  transform: translateY(-45px);
   opacity:1;
   background-color: rgba(155, 155, 155, 0.9)
 } 
@@ -33,9 +33,9 @@
     flex-flow: row wrap;
    
     padding: 10px;
-    height: 35px;
+    height: 45px;
     justify-content: space-between;
-    align-items: center; 
+    align-content: center; 
     transform: translateY(0);
     
   transition: all .3s ease-in-out;
