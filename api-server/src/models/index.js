@@ -6,8 +6,8 @@ const Image = new Schema({
 		type: String,
 		required: true
 	},
-	comments: String,
-	likes: Number
+	comments: [String],
+	Likes: Number
 })
 
 const User = new Schema({
@@ -17,25 +17,21 @@ const User = new Schema({
 	},
 	username: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	password: {
 		type: String,
 		required: true
 	},
-
 	following: [
 		{
 			type: ObjectId,
 			ref: 'User'
 		}
 	],
-
 	images: [Image]
-
 })
-
-
 
 module.exports = {
 	User: mongoose.model('User', User),
