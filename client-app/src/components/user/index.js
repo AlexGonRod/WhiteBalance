@@ -12,9 +12,9 @@ class User extends Component {
     }
 
     componentDidMount() {
-
         api.listUser()
             .then(user => {
+
                 this.setState({ user })
             })
     }

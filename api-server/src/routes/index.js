@@ -55,8 +55,7 @@ routes.post('/create', jsonBodyParser, (req, res) => {
 routes.get('/:token/following', jwtValidate, (req, res) => {
 
     const { params: { token } } = req
-    const {id } = jwt.verify(token, secret)
-    console.log(id)
+    const { id } = jwt.verify(token, secret)
 
     logic.getUserFollowing(id)
         .then((data) => {
@@ -78,9 +77,10 @@ routes.get('/:token', jwtValidate, (req, res) => {
 })
 
 
-routes.put('/:id/update', [jwtValidate, jsonBodyParser], (req, res) => {
+routes.put('/:token/update', [jwtValidate, jsonBodyParser], (req, res) => {
     const { body: { name, username, password, newName, newUsername, newPassword } } = req
-    const { params: { id } } = req
+    const { params: { token } } = req
+    const { id } = jwt.verify(token, secret)
 
     logic.update(id, name, username, password, newName, newUsername, newPassword)
         .then((data) => {
@@ -90,10 +90,11 @@ routes.put('/:id/update', [jwtValidate, jsonBodyParser], (req, res) => {
 })
 
 
-routes.delete('/:id/delete', [jwtValidate, jsonBodyParser], (req, res) => {
+routes.delete('/:token/delete', [jwtValidate, jsonBodyParser], (req, res) => {
 
-    const { params: { id } } = req
+    const { params: { token } } = req
     const { body: { username, password } } = req
+    const { id } = jwt.verify(token, secret)
 
     logic.remove(id, username, password)
         .then(() => {

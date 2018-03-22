@@ -8,7 +8,7 @@ const logic = {
             .then(() => {
                 validate({ username, password })
 
-                return User.findOne({ username, password })
+                return User.findOne({ username, password },{_id: 0, username: 1})
             })
             .then(user => {
                 if (!user) throw Error('username and/or password wrong')

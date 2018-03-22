@@ -59,12 +59,11 @@ class Register extends Component {
 
         if (usernameInput === "" && passwordInput === "") {
             this.setState({ showError: true })
-
-
+            
         } else {
             api.login(usernameInput, passwordInput)
-                .then(user=> {
-                        this.props.history.push(`/user`)
+                .then(data => {
+                    this.props.history.push(`/user`)
                 })
         }
     }

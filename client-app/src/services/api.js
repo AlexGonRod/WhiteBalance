@@ -4,8 +4,6 @@ const protocol = 'http'
 const host = 'localhost'
 const port = 5000
 
-
-
 const api = {
 
     _call(method, path, body) {
@@ -15,8 +13,7 @@ const api = {
             body,
             json: true,
         }
-
-
+        
         if (this.getToken()) options.headers = { authorization: `Bearer ${this.getToken()}` }
 
         return rp(options)
@@ -25,7 +22,8 @@ const api = {
     login(username, password) {
         return this._call('post', 'login', { username, password })
             .then(data => {
-                this.setToken(data.token)
+                this.setToken(data)
+
                 return data
             })
     },
