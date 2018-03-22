@@ -5,6 +5,7 @@ import RegisterWithRouter from '../register'
 import Following from '../following'
 import User from '../user'
 import Account from '../account'
+import Uploader from '../uploader'
 
 
 
@@ -37,6 +38,10 @@ class Home extends Component {
 
                 <Route path="/account" render={() => (
                     <Account />
+                )} />
+
+                <Route path="/upload" render={() => (
+                    <Uploader />
                 )} />
 
 
