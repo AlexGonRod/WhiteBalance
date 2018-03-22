@@ -8,7 +8,7 @@ const logic = {
             .then(() => {
                 validate({ username, password })
 
-                return User.findOne({ username, password },{_id: 0, username: 1})
+                return User.findOne({ username, password },{_id: 1, username: 1})
             })
             .then(user => {
                 if (!user) throw Error('username and/or password wrong')
@@ -33,13 +33,12 @@ const logic = {
     },
 
     getUser(id) {
-        return new Promise((resolve, reject) => {
-            validate(id)
-
-            User.findOne({ _id: id })
-                .then(resolve)
-                .catch(reject)
-        })
+        return Promise.resolve()
+            .then(() => {
+                validate(id)
+            return User.findOne({ _id: id })
+            })
+            .catch(err => err.message)
 
 
     },
@@ -52,6 +51,7 @@ const logic = {
 
                 return User.findOne({ _id: id }, { following: 1, _id: 0 })
                     .then(following => {
+                       
                         return User.find({ _id: { $in: following.following } })
 
                     })

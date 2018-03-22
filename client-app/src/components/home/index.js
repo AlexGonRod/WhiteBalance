@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-// import api from '../../services/api'
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
+import LoginWithRouter from '../login'
 import RegisterWithRouter from '../register'
 import Following from '../following'
 import User from '../user'
@@ -24,6 +24,10 @@ class Home extends Component {
                 <Route path="/user" component={User} />
 
                 <Route exact path="/" render={() => (
+                    <LoginWithRouter />
+                )} />
+
+                <Route path="/register" render={() => (
                     <RegisterWithRouter />
                 )} />
 

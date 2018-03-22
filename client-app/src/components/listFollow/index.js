@@ -5,10 +5,10 @@ import './styles/main.css'
 function ListFollow(props) {
 
     if (props.userdata)
-        console.log(props.userdata)
+        //console.log(props.userdata)
         return (
             <header >
-                {Object.keys(props.userdata).length > 0 ? props.userdata.map((username, index) => {
+                {(props.userdata).length > 0 ? props.userdata.map((username, index) => {
                     return (
                         <div className="F_data" key={index}>
                             {username.images ? username.images.map((image, index) => {

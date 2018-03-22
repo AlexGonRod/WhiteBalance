@@ -12,11 +12,13 @@ class User extends Component {
     }
 
     componentDidMount() {
-        api.listUser()
+        api.listUser(localStorage.getItem('token'))
             .then(user => {
 
-                this.setState({ user })
+                this.setState({ user: user.data })
             })
+        
+            
     }
 
 

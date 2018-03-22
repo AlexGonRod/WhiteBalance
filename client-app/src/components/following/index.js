@@ -12,9 +12,10 @@ class Following extends Component {
 
 
     componentDidMount() {
-        api.listFollowing()
+        api.listFollowing(localStorage.getItem('token'))
             .then(following => { 
-                this.setState({ following }) })
+                console.log(following)
+                this.setState({ following: following.data }) })
     }
 
     render() {

@@ -5,8 +5,7 @@ const host = 'localhost'
 const port = 5000
 
 const api = {
-
-    _call(method, path, body) {
+    _call(method, path, body, token) {
         const options = {
             method,
             uri: `${protocol}://${host}:${port}/users/${path}`,
@@ -14,18 +13,13 @@ const api = {
             json: true,
         }
         
-        if (this.getToken()) options.headers = { authorization: `Bearer ${this.getToken()}` }
+        if (token) options.headers = { authorization: `Bearer ${token}` }
 
         return rp(options)
     },
 
     login(username, password) {
         return this._call('post', 'login', { username, password })
-            .then(data => {
-                this.setToken(data)
-
-                return data
-            })
     },
 
     create(name, username, password) {
@@ -33,32 +27,21 @@ const api = {
     },
 
 
-    listUser() {
-        return this._call('get', this.getToken(), undefined)
+    listUser(token) {
+        return this._call('get', 'user', undefined, token)
     },
 
-    listFollowing(id) {
-        return this._call('get', `${this.getToken()}/following`, undefined)
+    listFollowing(token) {
+        return this._call('get', 'following', undefined, token)
     },
 
-    update(id, name, username, password, newName, newUsername, newPassword) {
-        return this._call('post', `${this.getToken()}/update`, { name, username, password, newName, newUsername, newPassword })
+    update( name, username, password, newName, newUsername, newPassword, token) {
+        return this._call('post', 'update', { name, username, password, newName, newUsername, newPassword }, token)
     },
 
-    delete(id, username, password) {
-        return this._call('post', `${this.getToken()}/delete`)
-    },
-
-    setToken(token) {
-        localStorage.setItem("token", token)
-    },
-
-    getToken() {
-        return localStorage["token"]
+    delete(username, password, token) {
+        return this._call('post', 'delete', token)
     }
-
-
-
 }
 
 export default api;

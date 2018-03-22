@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchWithRouter from '../header/search'
 import './styles/main.css';
 
 
-function Header(props) {
-
+class Header extends Component {
+	
+	logOut = () => {
+		
+		localStorage.removeItem('token')
+	}
+render(){
 	return (
 
 		<nav className="navbar navbar-expand-lg navbar-light bg-transparent">
@@ -41,8 +46,9 @@ function Header(props) {
 							<i className="far fa-user"></i>
 						</a>
 						<div className="dropdown-menu dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
-							<NavLink id="follow" className="nav-link" to="/">Profile</NavLink>
+							<NavLink id="follow" className="nav-link" to="/user">Profile</NavLink>
 							<NavLink id="follow" className="nav-link" to="/account">Settings</NavLink>
+							<NavLink id="follow" className="nav-link" to ="/" onClick={this.logOut}>Logout</NavLink>
 						</div>
 					</li>
 				</ul>
@@ -53,6 +59,6 @@ function Header(props) {
 	);
 
 }
-
+}
 
 export default Header;
