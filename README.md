@@ -6,7 +6,7 @@ Here you have the opportunity to show your **passion.**
 
 ## SURGE
 
-- http://whitebalance.surge.sh/#/user
+- http://whitebalance.surge.sh/
 
 ## REPO GIT
 
@@ -32,16 +32,13 @@ Here you have the opportunity to show your **passion.**
 
 ## WHAT IT'S USED
 
-- Framework: React Material-UI
+- Framework: Bootstrap 4
 - REACT
 - REACT Hash Router
-- REACT Photo Gallery
 - Some React Components
-- JASMINE
 - MongoDB
 - Mongoose
 - EXPRESS
-- PASSPORT
 
 
 ## COMPONENT TREE
@@ -51,6 +48,8 @@ Here you have the opportunity to show your **passion.**
         * Landing Page
             * User Page
             * User Profile
+            * Following
+            * Upload
 
 - **LogIn/Register:** a kind of Splash Screen, the first thing that every user sees the first time.
 - **Main App**: this main component renderizes every single component.
