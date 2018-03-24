@@ -8,7 +8,7 @@ const logic = {
             .then(() => {
                 validate({ username, password })
 
-                return User.findOne({ username, password },{_id: 1, username: 1})
+                return User.findOne({ username, password }, { _id: 1, username: 1 })
             })
             .then(user => {
                 if (!user) throw Error('username and/or password wrong')
@@ -36,7 +36,7 @@ const logic = {
         return Promise.resolve()
             .then(() => {
                 validate(id)
-            return User.findOne({ _id: id })
+                return User.findOne({ _id: id })
             })
             .catch(err => err.message)
 
@@ -51,7 +51,7 @@ const logic = {
 
                 return User.findOne({ _id: id }, { following: 1, _id: 0 })
                     .then(following => {
-                       
+
                         return User.find({ _id: { $in: following.following } })
 
                     })
@@ -76,6 +76,48 @@ const logic = {
                 if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
 
                 return User.updateOne({ _id: id }, { name: newName, username: newUsername, password: newPassword })
+            })
+            .catch(err => err.message)
+    },
+
+    updateImage(id, image) {
+
+        return Promise.resolve()
+            .then(() => {
+                validate({ id, image })
+                return User.update({ _id: id }, { $push: { images: { url: image } } })
+
+            })
+            .catch(err => err.message)
+    },
+
+    getImage(id, imageId) {
+
+        return Promise.resolve()
+            .then(() => {
+                validate(id, imageId)
+
+                return User.findOne({ _id: id })
+            })
+            .then((user) => {
+                if (!user.images.id) throw Error('Invalid Id')
+                console.log(user.images.id(imageId))
+
+                return user.images.id(imageId)
+            })
+            .catch(err => err.message)
+
+    },
+
+    comments(id, comments) {
+
+        return Promise.resolve()
+            .then(() => {
+                validate({ id, comments })
+                return User.update({ _id: id }, { $push: { images: { url, comments } } })
+            })
+            .then(image => {
+
             })
             .catch(err => err.message)
     },

@@ -14,7 +14,7 @@ class Following extends Component {
     componentDidMount() {
         api.listFollowing(localStorage.getItem('token'))
             .then(following => { 
-                console.log(following)
+                
                 this.setState({ following: following.data }) })
     }
 

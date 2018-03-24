@@ -1,5 +1,6 @@
 const rp = require('request-promise')
 
+
 const protocol = 'http'
 const host = 'localhost'
 const port = 5000
@@ -39,8 +40,20 @@ const api = {
         return this._call('post', 'update', { name, username, password, newName, newUsername, newPassword }, token)
     },
 
+    getImage(imageId, token) {
+        return this._call('get', `image/${imageId}`, undefined, token )
+    },
+
+    updateImage(image, token) {
+        return this._call('put', 'updateImage', {image}, token)
+    }, 
+
+    comment(url, comments, token){
+        return this._call('put', 'comments', {url, comments}, token)
+    },
+
     delete(username, password, token) {
-        return this._call('post', 'delete', token)
+        return this._call('post', 'delete',undefined,  token)
     }
 }
 

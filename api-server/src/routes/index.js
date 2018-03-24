@@ -20,7 +20,7 @@ function jwtValidate(req, res, next) {
         const token = auth.split(' ')[1]
 
         jwt.verify(token, secret)
-        
+
         req.tokencito = jwt.verify(token, secret)
 
         next()
@@ -69,7 +69,7 @@ routes.get('/following', jwtValidate, (req, res) => {
 
 routes.get('/user', jwtValidate, (req, res) => {
 
-    const {id} = req.tokencito
+    const { id } = req.tokencito
 
     logic.getUser(id)
         .then(user => {
@@ -85,6 +85,41 @@ routes.put('/update', [jwtValidate, jsonBodyParser], (req, res) => {
     const { id } = req.tokencito
 
     logic.update(id, name, username, password, newName, newUsername, newPassword)
+        .then(() => {
+            return res.json(success())
+        })
+        .catch(err => res.json(fail(err.message)))
+})
+
+routes.put('/updateImage', [jwtValidate, jsonBodyParser], (req, res) => {
+    const { body: { image } } = req
+
+    const { id } = req.tokencito
+
+    logic.updateImage(id, image)
+        .then(() => {
+            return res.json(success())
+        })
+        .catch(err => res.json(fail(err.message)))
+})
+
+routes.get('/image/:imageId', [jwtValidate, jsonBodyParser], (req, res) => {
+    const { params: { imageId } } = req
+
+    const { id } = req.tokencito
+
+    logic.getImage(id, imageId)
+        .then(image => {
+            res.json(success(image))
+        })
+        .catch(err => res.json(fail(err.message)))
+})
+
+routes.put('/comments', [jwtValidate, jsonBodyParser], (req, res) => {
+    const { body: { comments } } = req
+    const { id } = req.tokencito
+
+    logic.comments(id, comments)
         .then(() => {
             return res.json(success())
         })

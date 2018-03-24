@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Jumbotron from '../jumbotron'
-import ImageList from '../ImageList'
+import ImageWithRouter from '../ImageList'
 import api from '../../services/api'
 
 class User extends Component {
@@ -10,6 +10,8 @@ class User extends Component {
             user: {}
         }
     }
+
+
 
     componentDidMount() {
         api.listUser(localStorage.getItem('token'))
@@ -26,7 +28,7 @@ class User extends Component {
         return (
             <div>
                 <Jumbotron userdata={this.state.user} />
-                <ImageList images={this.state.user.images} />
+                <ImageWithRouter images={this.state.user.images} />
             </div >
         )
     }
