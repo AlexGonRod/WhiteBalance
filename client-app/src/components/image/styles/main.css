@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    box-sizing: border-box;
+}
+
+.container {
+   
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+}
+
+.card, .list-group-item {
+    background: transparent;
+}
+
+.card-footer {
+    font-size: 12px;
+}
+
+
+

@@ -12,8 +12,8 @@ class Login extends Component {
         this.state = {
             usernameInput: '',
             passwordInput: '',
-            user: null,
-            showError: false
+            showError: false,
+            showError2: false
         }
     }
 
@@ -38,16 +38,18 @@ class Login extends Component {
         if (usernameInput === "" && passwordInput === "") {
             this.setState({ showError: true })
 
-        } else {
-            api.login(usernameInput, passwordInput)
-                .then(result => {
-                    localStorage.setItem('token', result.data.token)
 
-                    this.props.history.push('/user')
-                })
-        }
+            } else {
+                api.login(usernameInput, passwordInput)
+                    .then(result => {
+                        localStorage.setItem('token', result.data.token)
+
+                        this.props.history.push('/user')
+                    })
+            }
+        
+
     }
-
 
     render() {
         return (
@@ -57,9 +59,10 @@ class Login extends Component {
                     <input type="password" name="password" id="password" placeholder="Password" className="personalized-input" onChange={this.keepInputPassword} value={this.state.passwordInput} />
                     <br />
                     <button value="login" type="submit" className="white-text button" onClick={this.handleSubmitLogin}>{"Login"}</button>
-                    <NavLink  value="register" to="/register" className="white-text button">{"Register"}</NavLink>
+                    <NavLink value="register" to="/register" className="white-text button">{"Register"}</NavLink>
 
-                    <h3>{(this.state.showError) ? "Username or Password incorrect" : ""}</h3>
+        
+                    <h3>{(this.state.showError2) ? "Some inputs required" : ""}</h3>
 
 
                 </form>

@@ -48,9 +48,9 @@ routes.post('/create', jsonBodyParser, (req, res) => {
     const { body: { name, username, password } } = req
 
     logic.register(name, username, password)
-        .then((data) => {
-
-            return res.json(success(data))
+        .then((user) => {
+            const token = jwt.sign({ id: user._id }, secret, { expiresIn })
+            return res.json(success({ token }))
         })
         .catch(err => res.json(fail(err.message)))
 })
@@ -65,6 +65,18 @@ routes.get('/following', jwtValidate, (req, res) => {
         })
         .catch(err => res.json(fail(err.message)))
 
+})
+
+
+routes.get('/list', jwtValidate, (req, res) => {
+
+    const { id } = req.tokencito
+
+    logic.getUsers(id)
+        .then(users => {
+            res.json(success(users))
+        })
+        .catch(err => res.json(fail(err.message)))
 })
 
 routes.get('/user', jwtValidate, (req, res) => {
@@ -115,30 +127,32 @@ routes.get('/image/:imageId', [jwtValidate, jsonBodyParser], (req, res) => {
         .catch(err => res.json(fail(err.message)))
 })
 
-routes.put('/comments', [jwtValidate, jsonBodyParser], (req, res) => {
-    const { body: { comments } } = req
+routes.put('/image/:imageId/comments', [jwtValidate, jsonBodyParser], (req, res) => {
+   
+    const { params: { imageId } } = req
+    const {body: {comments}} =req
     const { id } = req.tokencito
 
-    logic.comments(id, comments)
-        .then(() => {
-            return res.json(success())
+    logic.comments(id, imageId, comments)
+        .then((comments) => {
+            return res.json(success(comments))
         })
         .catch(err => res.json(fail(err.message)))
 })
 
 
-routes.delete('/delete', [jwtValidate, jsonBodyParser], (req, res) => {
+// routes.delete('/delete', [jwtValidate, jsonBodyParser], (req, res) => {
 
-    // const { params: { id } } = req
-    const { body: { username, password } } = req
-    const { id } = req.tokencito
+//     // const { params: { id } } = req
+//     const { body: { username, password } } = req
+//     const { id } = req.tokencito
 
-    logic.remove(id, username, password)
-        .then(() => {
-            return res.json(success())
-        })
-        .catch(err => res.json(err.message))
-})
+//     logic.remove(id, username, password)
+//         .then(() => {
+//             return res.json(success())
+//         })
+//         .catch(err => res.json(err.message))
+// })
 
 
 module.exports = routes

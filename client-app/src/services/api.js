@@ -27,6 +27,10 @@ const api = {
         return this._call('post', 'create', { name, username, password })
     },
 
+    listUsers(token) {
+        return this._call('get', 'list', undefined, token)
+    },
+
 
     listUser(token) {
         return this._call('get', 'user', undefined, token)
@@ -48,8 +52,8 @@ const api = {
         return this._call('put', 'updateImage', {image}, token)
     }, 
 
-    comment(url, comments, token){
-        return this._call('put', 'comments', {url, comments}, token)
+    comment(imageId, comments, token){
+        return this._call('put', `image/${imageId}/comments`, {comments}, token)
     },
 
     delete(username, password, token) {

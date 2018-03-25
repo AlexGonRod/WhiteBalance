@@ -30,7 +30,7 @@ class ImageList extends Component {
                 </div>
 
 
-            }) : undefined}
+            }).reverse() : undefined}
         </header>
 
 

@@ -4,15 +4,11 @@
     font-family: 'Raleway', sans-serif;
 }
 
-.nav-link {
-    
-}
-
 .jumbotron {
     
     color: white;
     height: 300px;
-    background-image:url('../../categories/21950039_10212780525499766_7728153444294096198_o.jpg'); 
+    background-image:url('./21950039_10212780525499766_7728153444294096198_o.jpg'); 
     margin-top: 10px;
     margin-bottom: 0px;
 }

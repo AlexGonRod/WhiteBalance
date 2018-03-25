@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import './styles/main.css'
 import api from '../../services/api'
 
@@ -45,35 +45,35 @@ class Register extends Component {
 
         } else {
             api.create(nameInput, usernameInput, passwordInput)
-                .then(user => {
-
-                    this.props.history.push(`/user`)
+                .then(result => {
+                    localStorage.setItem('token', result.data.token)
+                    this.props.history.push('/user')
                 })
         }
+        
     }
 
     render() {
         return (
-
             <div className="column-gray center-text centered-box column">
-                <form id="register">
-                    <input type="text" name="name" id="name" placeholder="Name" className="personalized-input" onChange={this.keepInputName} value={this.state.nameInput} /> 
+                <form id="login">
+                    <input type="text" name="name" id="name" placeholder="name" className="personalized-input" onChange={this.keepInputName} value={this.state.nameInput} />
                     <input type="text" name="username" id="username" placeholder="Username" className="personalized-input" onChange={this.keepInputUsername} value={this.state.usernameInput} />
                     <input type="password" name="password" id="password" placeholder="Password" className="personalized-input" onChange={this.keepInputPassword} value={this.state.passwordInput} />
-                    <input type="password" name="validatePassword" id="validatePassword" placeholder="Retype Password" className="personalized-input" onChange={this.keepInputPassword2} value={this.state.passwordInput2} /> 
+                    <input type="password" name="password2" id="password2" placeholder="Retype password" className="personalized-input" onChange={this.keepInputPassword2} value={this.state.passwordInput2} />
                     <br />
-                    <button value="register" type="submit" className="white-text button" onClick={this.handleSubmit}>{"Register"}</button> 
-                    
-                    <h6>{(this.state.showError) ? "Some fields required" : ""}</h6>
+                    <button value="register" type="submit" className="white-text button" onClick={this.handleSubmit}>{"Register"}</button>
+                    <NavLink value="login" to="/" className="white-text button">{"Login"}</NavLink>
+
+
+                    <h3>{(this.state.showError2) ? "Some inputs required" : ""}</h3>
+
 
                 </form>
-
-
             </div>
-
-        );
+        )
     }
-};
+}
 
 const RegisterWithRouter = withRouter(Register)
 export default RegisterWithRouter

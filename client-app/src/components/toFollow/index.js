@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react'
+import api from '../../services/api'
 import './styles/main.css'
 
 
-function ListFollow(props) {
+class ToFollow extends Component {
+    constructor(){
+        super()
 
-    if (props.userdata)
-        //console.log(props.userdata)
+        this.state = {
+            users: {}
+        }
+    }
+
+    
+    componentDidMount() {
+        api.listUsers(localStorage.getItem('token'))
+            .then(users => {
+                console.log(users)
+                this.setState({ users: users.data })
+            })
+
+
+    }
+
+    render() {
+
         return (
             <header >
-                {(props.userdata).length > 0 ? props.userdata.map((username, index) => {
+                {(this.state.users).length > 0 ? this.state.users.map((username, index) => {
                     return (
                         <div className="F_data" key={index}>
                             {username.images ? username.images.map((image, index) => {
@@ -32,14 +51,13 @@ function ListFollow(props) {
                     )
                 }) : undefined
                 }
-   
             </header>
         )
+    }
 }
 
 
-export default ListFollow
+export default ToFollow
 
 
 //{
-    

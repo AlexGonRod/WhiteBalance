@@ -24,11 +24,15 @@ render(){
 					<li className="nav-item" />
 					<NavLink id="follow" className="nav-link" to="/following">Following</NavLink>
 				</ul>
+				<ul className="navbar-nav">
+					<li className="nav-item" />
+					<NavLink id="tofollow" className="nav-link" to="/tofollow">To follow</NavLink>
+				</ul>
             
 				<SearchWithRouter />
 				<ul className="navbar-nav ml-auto">
 					<li className="nav-item">
-						<NavLink id="follow" className="nav-link" to="/upload"><i className="fas fa-cloud-upload-alt"></i></NavLink>
+						<NavLink id="fupload" className="nav-link" to="/upload"><i className="fas fa-cloud-upload-alt"></i></NavLink>
 					</li>
 					<li className="nav-item dropdown">
 						<a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

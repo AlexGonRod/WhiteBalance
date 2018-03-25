@@ -22,13 +22,25 @@ const logic = {
         return Promise.resolve()
             .then(() => {
                 validate({ name, username, password })
-                return User.findOne({ username })
+                return User.findOne({ username }, {_id:1, username: 1})
             })
             .then(user => {
                 if (user) throw Error(`This username already exists`)
 
+
                 return User.create({ name, username, password })
             })
+
+    },
+
+    getUsers(id) {
+        return Promise.resolve()
+            .then((users) => {
+                validate(id)
+                return User.find({username: {$ne: "Alexito"}})
+            })
+            .catch(err => err.message)
+
 
     },
 
@@ -36,6 +48,7 @@ const logic = {
         return Promise.resolve()
             .then(() => {
                 validate(id)
+                
                 return User.findOne({ _id: id })
             })
             .catch(err => err.message)
@@ -51,7 +64,7 @@ const logic = {
 
                 return User.findOne({ _id: id }, { following: 1, _id: 0 })
                     .then(following => {
-
+                        
                         return User.find({ _id: { $in: following.following } })
 
                     })
@@ -101,47 +114,52 @@ const logic = {
             })
             .then((user) => {
                 if (!user.images.id) throw Error('Invalid Id')
-                console.log(user.images.id(imageId))
-
+                
                 return user.images.id(imageId)
             })
             .catch(err => err.message)
 
     },
 
-    comments(id, comments) {
+    comments(id, imageId, comments) {
 
         return Promise.resolve()
             .then(() => {
-                validate({ id, comments })
-                return User.update({ _id: id }, { $push: { images: { url, comments } } })
+                validate({ id, imageId, comments })
+                return User.findOne({ _id: id })
             })
-            .then(image => {
+            .then(user => {
+                return user.images.id(imageId)
+            })
+            .then(async (image) => {
 
+                image.comments.push(comments);
+                console.log(image.comments)
+                return await image.save();
             })
             .catch(err => err.message)
     },
 
-    remove(id, username, password) {
-        return Promise.resolve()
-            .then(() => {
-                validate({ id, username, password })
+    // remove(id, username, password) {
+    //     return Promise.resolve()
+    //         .then(() => {
+    //             validate({ id, username, password })
 
-                return User.findOne({ _id: id })
-            })
-            .then(user => {
+    //             return User.findOne({ _id: id })
+    //         })
+    //         .then(user => {
 
-                if (!user) throw Error('Username does not exist')
+    //             if (!user) throw Error('Username does not exist')
 
-                if (user._id.toString() !== id.toString()) throw Error('user id does not match the one provided')
+    //             if (user._id.toString() !== id.toString()) throw Error('user id does not match the one provided')
 
-                if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
+    //             if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
 
-                return user.remove()
+    //             return user.remove()
 
 
-            })
-    }
+    //         })
+    // }
 
 }
 
