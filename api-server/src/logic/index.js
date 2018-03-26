@@ -127,16 +127,16 @@ const logic = {
             .then(() => {
                 validate({ id, imageId, comments })
                 return User.findOne({ _id: id })
+                // return User.findOne({ $and: [{ _id: id }, { images: { _id: imageId } }] }).insert({ comemnts: comments })
             })
             .then(user => {
                 return user.images.id(imageId)
             })
-            .then(async (image) => {
+            // .then( (image) => {
 
-                image.comments.push(comments);
-                console.log(image.comments)
-                return await image.save();
-            })
+            //     image.comments.push(comments)
+            //     return image.save()
+            // })
             .catch(err => err.message)
     },
 
