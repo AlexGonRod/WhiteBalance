@@ -1,21 +1,32 @@
-import React from 'react';
+import React,  {Component} from 'react';
+import { withRouter } from 'react-router-dom'
 import './styles/main.css'
 
 
-function ListFollow(props) {
+class ListFollow extends Component {
 
-    if (props.userdata)
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
+    handleComments = (id) => {
+        this.props.history.push(`/image/${id}`)
+    }
+   
+render(){
+    if (this.props.userdata)
         //console.log(props.userdata)
         return (
             <header >
-                {(props.userdata).length > 0 ? props.userdata.map((username, index) => {
+                {(this.props.userdata).length > 0 ? this.props.userdata.map((username, index) => {
                     return (
                         <div className="F_data" key={index}>
                             {username.images ? username.images.map((image, index) => {
                                 return (
                                     <div className="imagen" key={index}>
                                         <p className="username">{username.username}</p>
-                                        <img src={image.url} alt={image.url} key={image.url} />
+                                        <img src={image.url} alt={image.url} key={image.url} onClick={e => {e.preventDefault(); 
+                                        this.handleComments(image._id)}} />
                                         <div className="comments">
                                             <div className="text">
                                                 <p><small>Last updated 3 mins ago</small></p>
@@ -35,11 +46,12 @@ function ListFollow(props) {
    
             </header>
         )
+    }
 }
 
 
-export default ListFollow
+const FollowWithRouter = withRouter(ListFollow)
+export default FollowWithRouter
 
 
-//{
     

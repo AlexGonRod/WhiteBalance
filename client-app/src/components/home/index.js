@@ -4,7 +4,7 @@ import LoginWithRouter from '../login'
 import RegisterWithRouter from '../register'
 import User from '../user'
 import ToFollow from '../toFollow'
-import Following from '../following'
+import FollowWithRouter from '../following'
 import Account from '../account'
 import UploadWithRouter from '../uploader'
 import Image from '../image'
@@ -33,7 +33,7 @@ class Home extends Component {
                     )} />
 
                     <Route path="/following" render={() => (
-                        <Following />
+                        <FollowWithRouter />
                     )} />
 
                     <Route path="/tofollow" render={() => (
@@ -50,6 +50,8 @@ class Home extends Component {
 
                     <Route path="/image/:imageId" component={Image} 
                     />
+
+                    {/* /:ownerId/image/:imageId/comment */}
 
                     <Route render={() => (
                         <LoginWithRouter />

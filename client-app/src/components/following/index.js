@@ -12,6 +12,7 @@ class Following extends Component {
 
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         api.listFollowing(localStorage.getItem('token'))
             .then(following => { 
                 

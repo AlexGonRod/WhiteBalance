@@ -1,4 +1,4 @@
-const { User, Image, Comment } = require('../models')
+const { User } = require('../models')
 
 
 const logic = {
@@ -22,7 +22,7 @@ const logic = {
         return Promise.resolve()
             .then(() => {
                 validate({ name, username, password })
-                return User.findOne({ username }, { _id: 1, username: 1 })
+                return User.findOne({ username }, {_id:1, username: 1})
             })
             .then(user => {
                 if (user) throw Error(`This username already exists`)
@@ -37,15 +37,9 @@ const logic = {
         return Promise.resolve()
             .then((users) => {
                 validate(id)
-                return User.findOne({ _id: id }, { following: 1, _id: 0 })
-                    .then(following => {
-
-                        return User.find({ $and: [{_id: { $nin: following.following } },{_id:{$ne: id}}]})
-
-                    })
-                
+                return User.find({username: {$ne: "Alexito"}})
             })
-
+            .catch(err => err.message)
 
 
     },
@@ -54,10 +48,10 @@ const logic = {
         return Promise.resolve()
             .then(() => {
                 validate(id)
-
+                
                 return User.findOne({ _id: id })
             })
-
+            .catch(err => err.message)
 
 
     },
@@ -70,11 +64,11 @@ const logic = {
 
                 return User.findOne({ _id: id }, { following: 1, _id: 0 })
                     .then(following => {
-
+                        
                         return User.find({ _id: { $in: following.following } })
 
                     })
-
+                    .catch(err => err.message)
 
             })
     },
@@ -96,7 +90,7 @@ const logic = {
 
                 return User.updateOne({ _id: id }, { name: newName, username: newUsername, password: newPassword })
             })
-
+            .catch(err => err.message)
     },
 
     updateImage(id, image) {
@@ -104,10 +98,10 @@ const logic = {
         return Promise.resolve()
             .then(() => {
                 validate({ id, image })
-                return User.update({ _id: id }, { $push: { images: { url: image, user: id } } })
+                return User.update({ _id: id }, { $push: { images: { url: image } } })
 
             })
-
+            .catch(err => err.message)
     },
 
     getImage(id, imageId) {
@@ -120,51 +114,30 @@ const logic = {
             })
             .then((user) => {
                 if (!user.images.id) throw Error('Invalid Id')
-
+                
                 return user.images.id(imageId)
             })
-
+            .catch(err => err.message)
 
     },
 
-    getFollowImage(ownerId, imageId, id){
-        return Promise.resolve()
-        .then(() => {
-            validate({ ownerId, imageId, id})
+    comments(id, imageId, comments) {
 
-            return User.findOne({_id: ownerId})
-        })
-        .then(user => {
-            return User.findOne({_id: id})
-        })
-        .then(image => {
-            return image.images.id(imageId)
-        })
-    },
-
-    commentImage(ownerId, imageId, comment, id) {
         return Promise.resolve()
             .then(() => {
-                validate({ ownerId, imageId, comment, id })
-
-                return User.findOne({ _id: ownerId })
+                validate({ id, imageId, comments })
+                return User.findOne({ _id: id })
+                // return User.findOne({ $and: [{ _id: id }, { images: { _id: imageId } }] }).insert({ comemnts: comments })
             })
             .then(user => {
-                return User.findOne({ _id: id })
-                    .then(commentator => {
-                        const image = user.images.id(imageId)
-
-                        const _comment = new Comment({
-                            text: comment,
-                            user: commentator._id
-                        })
-
-                        image.comments.push(_comment)
-
-                        return user.save()
-                    })
+                return user.images.id(imageId)
             })
+            // .then( (image) => {
 
+            //     image.comments.push(comments)
+            //     return image.save()
+            // })
+            .catch(err => err.message)
     },
 
     // remove(id, username, password) {

@@ -16,6 +16,11 @@ class Register extends Component {
         }
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+    
+
     keepInputName = (e) => {
         this.setState({ nameInput: e.target.value })
 
@@ -45,8 +50,13 @@ class Register extends Component {
 
         } else {
             api.create(nameInput, usernameInput, passwordInput)
+                .then(user => {
+                    if(user) throw Error('User already exists')
+                })
+            api.login(usernameInput, passwordInput)
                 .then(result => {
                     localStorage.setItem('token', result.data.token)
+
                     this.props.history.push('/user')
                 })
         }

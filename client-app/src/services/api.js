@@ -52,8 +52,8 @@ const api = {
         return this._call('put', 'updateImage', {image}, token)
     }, 
 
-    comment(imageId, comments, token){
-        return this._call('put', `image/${imageId}/comments`, {comments}, token)
+    commentImage(ownerId, imageId, comment, token){
+        return this._call('put', `${ownerId}/image/${imageId}/comment`, {comment}, token)
     },
 
     delete(username, password, token) {

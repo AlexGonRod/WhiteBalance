@@ -18,6 +18,7 @@ class Login extends Component {
     }
 
     componentWillMount() {
+        window.scrollTo(0, 0)
         firebase.auth().onAuthStateChanged(user => {
             this.setState({ user: user })
         })

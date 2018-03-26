@@ -6,6 +6,18 @@ import './styles/main.css'
 import { withRouter } from 'react-router-dom'
 
 class Uploader extends Component {
+    constructor(){
+        super()
+        this.state={
+            picture:''
+        }
+    }
+
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+    
+
 
     handleUpload = (event) => {
         const file = event.target.files[0]

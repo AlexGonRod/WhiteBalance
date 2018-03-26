@@ -14,6 +14,7 @@ class ToFollow extends Component {
 
     
     componentDidMount() {
+        window.scrollTo(0, 0)
         api.listUsers(localStorage.getItem('token'))
             .then(users => {
                 console.log(users)

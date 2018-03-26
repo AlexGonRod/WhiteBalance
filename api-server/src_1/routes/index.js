@@ -127,25 +127,13 @@ routes.get('/image/:imageId', [jwtValidate, jsonBodyParser], (req, res) => {
         .catch(err => res.json(fail(err.message)))
 })
 
-routes.get('/following/:ownerId/imgs/:imageId', [jwtValidate, jsonBodyParser], (req, res) => {
-    const { params: { ownerId, imageId } } = req
+routes.put('/image/:imageId/comments', [jwtValidate, jsonBodyParser], (req, res) => {
+   
+    const { params: { imageId } } = req
+    const {body: {comments}} =req
     const { id } = req.tokencito
 
-    logic.getFollowImage(ownerId, imageId, id)
-    .then((image) => {
-            return res.json(success(image))
-        })
-        .catch(err => res.json(fail(err.message)))
-    
-} )
-
-routes.put('/:ownerId/image/:imageId/comment', [jwtValidate, jsonBodyParser], (req, res) => {
-
-    const { params: { ownerId, imageId } } = req
-    const { body: { comment } } = req
-    const { id } = req.tokencito
-
-    logic.commentImage(ownerId, imageId, comment, id)
+    logic.comments(id, imageId, comments)
         .then((comments) => {
             return res.json(success(comments))
         })
