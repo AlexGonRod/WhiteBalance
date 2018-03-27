@@ -3,28 +3,25 @@
 
 header { 
   font-family: 'Lobster', cursive;
-  display: -ms-flexbox;
+   display: -ms-flexbox; 
   -ms-flex-wrap: wrap;
   -ms-flex-direction: column;
-  -webkit-flex-flow: row wrap; 
+  -webkit-flex-flow: row wrap;  
   flex-flow: row wrap; 
-  display: -webkit-box;
+   display: -webkit-box; 
   display: flex;
+  padding: 15px;
 }
+
 header .imagen { 
   -webkit-box-flex: auto;
-  -ms-flex: auto;
-  flex: auto; 
-  float:left;
-  position: relative;
-  width: 400px; 
-  overflow: hidden;
-  cursor:pointer;
-  margin-top: 0;
+  -ms-flex: auto; 
+  padding: 0;
+
 }
 header .imagen img { 
   width: 100%; 
-  height: auto; 
+  max-height: auto; 
 }
 
 
@@ -32,7 +29,7 @@ header .imagen img {
     
   transform: translateY(-45px);
   opacity:1;
-  background-color: rgba(155, 155, 155, 0.9)
+  background-color: rgba(32, 32, 32, 0.438)
 } 
 
 
@@ -43,7 +40,7 @@ header .imagen .comments {
     flex-flow: row;
     padding: 10px;
     width: 100%;
-    height: 105px;
+    height: 45px;
     justify-content: space-between;
     align-content: center; 
     transform: translateY(0);
@@ -51,15 +48,16 @@ header .imagen .comments {
   transition: all .3s ease-in-out;
   opacity:0;
   overflow: hidden;
-  color:black;
-}
-
-.card-body {
-  padding: 0 !important;
 }
 
 .likes {
     font-size: 20px;
+    color: rgb(0, 0, 0);
+}
+
+.card-body {
+  padding: 0 !important;
+  flex: 0 0 auto;
 }
 
 @media screen and (max-width: 400px) {

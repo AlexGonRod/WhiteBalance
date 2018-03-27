@@ -34,7 +34,7 @@ class Uploader extends Component {
             })
             .then((result) => 
             swal({
-                title: 'Du llu guan tu uploa dis imach?',
+                title: 'Do you want to upload this image?',
                 text: ":)",
                 type: 'question',
                 showCancelButton: true,

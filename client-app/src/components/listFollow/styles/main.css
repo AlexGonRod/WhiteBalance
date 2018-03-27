@@ -10,6 +10,7 @@ header {
   flex-flow: row wrap; 
    display: -webkit-box; 
   display: flex;
+  padding: 15px;
 }
 
 header .imagen { 
@@ -28,7 +29,7 @@ header .imagen img {
     
   transform: translateY(-45px);
   opacity:1;
-  background-color: rgba(155, 155, 155, 0.9)
+  background-color: rgba(32, 32, 32, 0.438)
 } 
 
 
@@ -47,11 +48,11 @@ header .imagen .comments {
   transition: all .3s ease-in-out;
   opacity:0;
   overflow: hidden;
-  color:black;
 }
 
 .likes {
     font-size: 20px;
+    color: rgb(26, 26, 26);
 }
 
 .card-body {

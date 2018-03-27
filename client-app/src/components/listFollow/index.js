@@ -17,11 +17,11 @@ class ListFollow extends Component {
         return (
             < header >
                 {(this.props.userdata).length > 0 ? this.props.userdata.map((username, index) => {
-                    return <div className="wrapper" key={index}>
+                    return <div className="row" key={index}>
                         {username.images ? username.images.map((image, index) => {
 
                             return (
-                                <div className="imagen" key={index}>
+                                <div className="imagen col-xs-2 col-md-4" key={index}>
                                     <img src={image.url} alt={image.url} onClick={e => {
                                         e.preventDefault();
                                         this.handleComments(image._id, image.user)

@@ -49,8 +49,7 @@ routes.post('/create', jsonBodyParser, (req, res) => {
 
     logic.register(name, username, password)
         .then((user) => {
-            const token = jwt.sign({ id: user._id }, secret, { expiresIn })
-            return res.json(success({ token }))
+            res.json(succes(user))
         })
         .catch(err => res.json(fail(err.message)))
 })
@@ -115,9 +114,21 @@ routes.put('/updateImage', [jwtValidate, jsonBodyParser], (req, res) => {
         .catch(err => res.json(fail(err.message)))
 })
 
+routes.delete('/image/:imageId/deleteImage', [jwtValidate, jsonBodyParser], (req, res) => { 
+    const { params: { imageId } } = req
+
+    const { id } = req.tokencito
+
+    logic.deleteImage(imageId, id )
+    .then((result) => {
+        res.json(success(result))
+    })
+    .catch(err => res.json(fail(err.message)))
+})
+
 routes.get('/image/:imageId/:ownerId', [jwtValidate, jsonBodyParser], (req, res) => {
     const { params: { imageId, ownerId } } = req
-
+    
 
     logic.getImage(ownerId,imageId)
         .then(image => {

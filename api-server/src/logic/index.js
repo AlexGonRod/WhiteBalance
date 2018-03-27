@@ -22,13 +22,12 @@ const logic = {
         return Promise.resolve()
             .then(() => {
                 validate({ name, username, password })
-                return User.findOne({ username }, { _id: 1, username: 1 })
+                return User.create({ name, username, password })
+                
             })
             .then(user => {
                 if (user) throw Error(`This username already exists`)
-
-
-                return User.create({ name, username, password })
+                return user
             })
 
     },
@@ -45,9 +44,6 @@ const logic = {
                     })
 
             })
-
-
-
     },
 
     getUser(id) {
@@ -57,8 +53,6 @@ const logic = {
 
                 return User.findOne({ _id: id })
             })
-
-
 
     },
 
@@ -74,7 +68,6 @@ const logic = {
                         return User.find({ _id: { $in: following.following } })
 
                     })
-
 
             })
     },
@@ -123,8 +116,15 @@ const logic = {
 
                 return user.images.id(imageId)
             })
+    },
 
-
+    deleteImage(imageId, id){
+        return Promise.resolve()
+        .then((image) => {
+            validate({imageId, id})
+            if(!imageId) throw Error ('Image not found')
+            return User.update({ _id: id }, { $pull: { images: { url: imageId } } })
+        })
     },
 
     commentImage(ownerId, imageId, comment, id) {

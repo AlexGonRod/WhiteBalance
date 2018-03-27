@@ -3,12 +3,8 @@
     box-sizing: border-box;
 }
 
-.container {
-   
-    margin-top: 16px;
-    margin-bottom: 16px;
-    font-family: 'Raleway', sans-serif;
-    color: white;
+.row {
+    padding: 15px;
 }
 
 .card, .list-group-item {
@@ -21,6 +17,10 @@
 
 .card-footer {
     font-size: 12px;
+}
+
+.list-group-item {
+    border-bottom-color: bisque;
 }
 
 
