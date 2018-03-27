@@ -35,9 +35,7 @@ render(){
 						<NavLink id="fupload" className="nav-link" to="/upload"><i className="fas fa-cloud-upload-alt"></i></NavLink>
 					</li>
 					<li className="nav-item dropdown">
-						<a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i className="far fa-bell"></i><span className="badge">4</span>
-						</a>
+						
 						<div className="dropdown-menu dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
 							<a className="dropdown-item">Action</a>
 							<a className="dropdown-item">Another action</a>

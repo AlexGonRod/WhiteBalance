@@ -33,17 +33,17 @@ const logic = {
 
     },
 
-    getUsers(id) {
+    getToFollow(id) {
         return Promise.resolve()
             .then((users) => {
                 validate(id)
                 return User.findOne({ _id: id }, { following: 1, _id: 0 })
                     .then(following => {
 
-                        return User.find({ $and: [{_id: { $nin: following.following } },{_id:{$ne: id}}]})
+                        return User.find({ $and: [{ _id: { $nin: following.following } }, { _id: { $ne: id } }] })
 
                     })
-                
+
             })
 
 
@@ -127,21 +127,6 @@ const logic = {
 
     },
 
-    getFollowImage(ownerId, imageId, id){
-        return Promise.resolve()
-        .then(() => {
-            validate({ ownerId, imageId, id})
-
-            return User.findOne({_id: ownerId})
-        })
-        .then(user => {
-            return User.findOne({_id: id})
-        })
-        .then(image => {
-            return image.images.id(imageId)
-        })
-    },
-
     commentImage(ownerId, imageId, comment, id) {
         return Promise.resolve()
             .then(() => {
@@ -161,6 +146,27 @@ const logic = {
 
                         image.comments.push(_comment)
 
+                        return user.save()
+                    })
+            })
+
+    },
+
+    setLikes(ownerId, imageId, id) {
+        return Promise.resolve()
+            .then(() => {
+                validate({ ownerId, imageId, id })
+
+                return User.findOne({ _id: ownerId })
+            })
+            .then(user => {
+                return User.findOne({ _id: id })
+                    .then(liker => {
+                        const image = user.images.id(imageId)
+                        
+                        
+                        image.likes.push(id)
+                        
                         return user.save()
                     })
             })

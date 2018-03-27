@@ -68,11 +68,11 @@ routes.get('/following', jwtValidate, (req, res) => {
 })
 
 
-routes.get('/list', jwtValidate, (req, res) => {
+routes.get('/tofollow', jwtValidate, (req, res) => {
 
     const { id } = req.tokencito
 
-    logic.getUsers(id)
+    logic.getToFollow(id)
         .then(users => {
             res.json(success(users))
         })
@@ -115,29 +115,28 @@ routes.put('/updateImage', [jwtValidate, jsonBodyParser], (req, res) => {
         .catch(err => res.json(fail(err.message)))
 })
 
-routes.get('/image/:imageId', [jwtValidate, jsonBodyParser], (req, res) => {
-    const { params: { imageId } } = req
+routes.get('/image/:imageId/:ownerId', [jwtValidate, jsonBodyParser], (req, res) => {
+    const { params: { imageId, ownerId } } = req
 
-    const { id } = req.tokencito
 
-    logic.getImage(id, imageId)
+    logic.getImage(ownerId,imageId)
         .then(image => {
             res.json(success(image))
         })
         .catch(err => res.json(fail(err.message)))
 })
 
-routes.get('/following/:ownerId/imgs/:imageId', [jwtValidate, jsonBodyParser], (req, res) => {
+routes.put('/:ownerId/image/:imageId/likes', [jwtValidate, jsonBodyParser], (req, res) => {
     const { params: { ownerId, imageId } } = req
     const { id } = req.tokencito
 
-    logic.getFollowImage(ownerId, imageId, id)
-    .then((image) => {
-            return res.json(success(image))
+    logic.setLikes(ownerId, imageId, id)
+        .then((likes) => {
+            return res.json(success(likes))
         })
         .catch(err => res.json(fail(err.message)))
-    
-} )
+})
+
 
 routes.put('/:ownerId/image/:imageId/comment', [jwtValidate, jsonBodyParser], (req, res) => {
 
@@ -153,7 +152,7 @@ routes.put('/:ownerId/image/:imageId/comment', [jwtValidate, jsonBodyParser], (r
 })
 
 
-// routes.delete('/delete', [jwtValidate, jsonBodyParser], (req, res) => {
+// routes.delete('/:ownerId/image/:imageId/delete', [jwtValidate, jsonBodyParser], (req, res) => {
 
 //     // const { params: { id } } = req
 //     const { body: { username, password } } = req

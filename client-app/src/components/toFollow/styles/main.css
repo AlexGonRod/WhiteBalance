@@ -1,23 +1,30 @@
-.F_data { 
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+
+header { 
+  font-family: 'Lobster', cursive;
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+  -ms-flex-direction: column;
+  -webkit-flex-flow: row wrap; 
   flex-flow: row wrap; 
+  display: -webkit-box;
   display: flex;
 }
-.F_data .imagen { 
-  
+header .imagen { 
+  -webkit-box-flex: auto;
+  -ms-flex: auto;
   flex: auto; 
+  float:left;
+  position: relative;
   width: 400px; 
   overflow: hidden;
   cursor:pointer;
   margin-top: 0;
 }
-.F_data .imagen img { 
+header .imagen img { 
   width: 100%; 
   height: auto; 
-}
-
-.username {
-  position: absolute;
-  
 }
 
 
@@ -27,13 +34,16 @@
   opacity:1;
   background-color: rgba(155, 155, 155, 0.9)
 } 
-.F_data .imagen .comments {
+
+
+
+header .imagen .comments {
     position: absolute;
     display: flex;
-    flex-flow: row wrap;
-   
+    flex-flow: row;
     padding: 10px;
-    height: 45px;
+    width: 100%;
+    height: 105px;
     justify-content: space-between;
     align-content: center; 
     transform: translateY(0);
@@ -44,13 +54,17 @@
   color:black;
 }
 
+.card-body {
+  padding: 0 !important;
+}
+
 .likes {
     font-size: 20px;
 }
 
 @media screen and (max-width: 400px) {
-  .F_data div { margin: 0; }
-  .F_data { padding: 0; }
+  header div { margin: 0; }
+  header { padding: 0; }
   
 }
 

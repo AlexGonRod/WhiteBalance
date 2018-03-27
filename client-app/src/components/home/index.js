@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import LoginWithRouter from '../login'
 import RegisterWithRouter from '../register'
 import User from '../user'
-import ToFollow from '../toFollow'
+import ToFollowWithRouter from '../toFollow'
 import FollowWithRouter from '../following'
 import Account from '../account'
 import UploadWithRouter from '../uploader'
@@ -37,7 +37,7 @@ class Home extends Component {
                     )} />
 
                     <Route path="/tofollow" render={() => (
-                        <ToFollow />
+                        <ToFollowWithRouter />
                     )} />
 
                     <Route path="/account" render={() => (
@@ -48,10 +48,8 @@ class Home extends Component {
                         <UploadWithRouter />
                     )} />
 
-                    <Route path="/image/:imageId" component={Image} 
+                    <Route path="/:imageId/image/:ownerId" component={Image} 
                     />
-
-                    {/* /:ownerId/image/:imageId/comment */}
 
                     <Route render={() => (
                         <LoginWithRouter />

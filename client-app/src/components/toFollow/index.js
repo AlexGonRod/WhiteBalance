@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+
 import api from '../../services/api'
 import './styles/main.css'
 
@@ -7,58 +9,61 @@ class ToFollow extends Component {
     constructor(){
         super()
 
-        this.state = {
-            users: {}
+        this.state ={
+            toFollow: []
         }
     }
 
-    
     componentDidMount() {
         window.scrollTo(0, 0)
-        api.listUsers(localStorage.getItem('token'))
-            .then(users => {
-                console.log(users)
-                this.setState({ users: users.data })
+        api.listToFollow(localStorage.getItem('token'))
+            .then(follow => {
+                this.setState({ toFollow: follow.data })
             })
+    }
 
-
+    handleComments = (imageId, userId) => {
+        this.props.history.push(`${imageId}/image/${userId}`)
     }
 
     render() {
-
-        return (
-            <header >
-                {(this.state.users).length > 0 ? this.state.users.map((username, index) => {
-                    return (
-                        <div className="F_data" key={index}>
-                            {username.images ? username.images.map((image, index) => {
+            return (
+                < header >
+                    {this.state.toFollow.length > 0 ? this.state.toFollow.map((username, index) => {
+                        return <div className="wrapper" key={index}>
+                            {(username.images.length) > 0 ? username.images.map((image, index) => {
+                            
                                 return (
-                                    <div className="imagen" key={index}>
-                                        <p className="username">{username.username}</p>
-                                        <img src={image.url} alt={image.url} key={image.url} />
+                                    <div className="imagen col-xs-2 col-md-4" key={index}>
+                                        <img src={image.url} alt={image.url} onClick={e => {
+                                            e.preventDefault();
+                                            this.handleComments(image._id, image.user)}} />
                                         <div className="comments">
                                             <div className="text">
-                                                <p><small>Last updated 3 mins ago</small></p>
+                                                <p><small>{username.username}</small></p>
                                             </div>
-                                            <div className="text2">
-                                                <p className="likes"><i className="far fa-heart"></i>   <i className="far fa-comment"></i></p>
+                                            <div className="card-body">
+                                                <div className="text2">
+                                                    <p className="likes"><i className="far fa-heart"></i><span className="badge text-muted">{image.likes ? image.likes.length : 0}</span><i className="far fa-comment" ></i><span className="badge text-muted">{image.comments ? image.comments.length : 0}</span></p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                )
+                                        )
                             }) : undefined
-                            }
+                        }
                         </div>
-                    )
-                }) : undefined
-                }
-            </header>
-        )
+                        }).reverse() : undefined
+                            
+                            
+                            
+                    }
+                 </header >
+            )
     }
 }
 
 
-export default ToFollow
+const ToFollowWithRouter = withRouter(ToFollow)
+export default ToFollowWithRouter
 
-
-//{

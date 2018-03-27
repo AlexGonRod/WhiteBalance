@@ -27,8 +27,8 @@ const api = {
         return this._call('post', 'create', { name, username, password })
     },
 
-    listUsers(token) {
-        return this._call('get', 'list', undefined, token)
+    listToFollow(token) {
+        return this._call('get', 'tofollow', undefined, token)
     },
 
 
@@ -44,8 +44,8 @@ const api = {
         return this._call('post', 'update', { name, username, password, newName, newUsername, newPassword }, token)
     },
 
-    getImage(imageId, token) {
-        return this._call('get', `image/${imageId}`, undefined, token )
+    getImage(imageId, ownerId, token) {
+        return this._call('get', `image/${imageId}/${ownerId}`, undefined, token )
     },
 
     updateImage(image, token) {
@@ -54,6 +54,10 @@ const api = {
 
     commentImage(ownerId, imageId, comment, token){
         return this._call('put', `${ownerId}/image/${imageId}/comment`, {comment}, token)
+    },
+
+    likeImage(ownerId, imageId, token){
+        return this._call('put', `${ownerId}/image/${imageId}/like`, token)
     },
 
     delete(username, password, token) {

@@ -5,8 +5,8 @@ import './styles/main.css'
 
 
 class ImageList extends Component {
-    handleComments = (id) => {
-        this.props.history.push(`/image/${id}`)
+    handleComments = (imageId, userId) => {
+        this.props.history.push(`/${imageId}/image/${userId}`)
     }
 
    render(){
@@ -15,16 +15,18 @@ class ImageList extends Component {
         <header>
 
             {this.props.images ? this.props.images.map((image,index) => {
-                return <div className="imagen" key={index}>
+                return <div className="imagen col-xs-2 col-md-4" key={index}>
                     <img src={image.url} alt={image.url} onClick={e => {e.preventDefault();
-                        this.handleComments(image._id)}} />
+                        this.handleComments(image._id, image.user)}} />
 
                     <div className="comments">
                         <div className="text">
-                            <p><small>Last updated 3 mins ago</small></p>
+                            <p><small> </small></p>
                         </div>
-                        <div className="text2">
-                            <p className="likes"><i className="far fa-heart"></i><i className="far fa-comment" ></i></p>
+                        <div className="card-body">
+                            <div className="text2">
+                                <p className="likes"><i className="far fa-heart"></i><span className="badge text-muted">{image.likes ? image.likes.length : 0}</span><i className="far fa-comment" ></i><span className="badge text-muted">{image.comments ? image.comments.length : 0}</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>

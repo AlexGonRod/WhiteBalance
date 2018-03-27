@@ -12,6 +12,6 @@ module.exports = new Schema({
         ref: 'User',
         required: true
     },
-    likes: Number
+    likes: []
 
 })
