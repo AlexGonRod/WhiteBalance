@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
-import SearchWithRouter from '../header/search'
 import './styles/main.css';
 
 
@@ -19,7 +18,7 @@ render(){
 				<i className="far fa-user"></i>
 			</button>
 
-			<div className="collapse navbar-collapse">
+			<div className="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul className="navbar-nav">
 					<li className="nav-item" />
 					<NavLink id="follow" className="nav-link" to="/following">Following</NavLink>
@@ -29,25 +28,16 @@ render(){
 					<NavLink id="tofollow" className="nav-link" to="/tofollow">To follow</NavLink>
 				</ul>
             
-				<SearchWithRouter />
-				<ul className="navbar-nav ml-auto">
+				<ul className="navbar-nav ml-auto ">
 					<li className="nav-item">
 						<NavLink id="fupload" className="nav-link" to="/upload"><i className="fas fa-cloud-upload-alt"></i></NavLink>
 					</li>
-					<li className="nav-item dropdown">
-						
-						<div className="dropdown-menu dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
-							<a className="dropdown-item">Action</a>
-							<a className="dropdown-item">Another action</a>
-							<div className="dropdown-divider"></div>
-							<a className="dropdown-item">Something else here</a>
-						</div>
-					</li>
+					
 					<li className="nav-item dropdown">
 						<a className="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i className="far fa-user"></i>
 						</a>
-						<div className="dropdown-menu dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
+						<div className="dropdown-menu dropdown-inverse dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
 							<NavLink id="follow" className="nav-link" to="/user">Profile</NavLink>
 							<NavLink id="follow" className="nav-link" to="/account">Settings</NavLink>
 							<NavLink id="follow" className="nav-link" to ="/" onClick={this.logOut}>Logout</NavLink>

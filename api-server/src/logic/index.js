@@ -26,7 +26,7 @@ const logic = {
                 
             })
             .then(user => {
-                if (user) throw Error(`This username already exists`)
+                //if (user) throw Error(`This username already exists`)
                 return user
             })
 
@@ -40,7 +40,7 @@ const logic = {
                     .then(following => {
 
                         return User.find({ $and: [{ _id: { $nin: following.following } }, { _id: { $ne: id } }] })
-
+                        
                     })
 
             })
@@ -159,40 +159,54 @@ const logic = {
 
                 return User.findOne({ _id: ownerId })
             })
-            .then(user => {
-                return User.findOne({ _id: id })
-                    .then(liker => {
-                        const image = user.images.id(imageId)
+                    .then(user => {
                         
+                        const images = user.images.id(imageId)
                         
-                        image.likes.push(id)
-                        
+                        const itsLike = images.likes.some(like=>{
+                            return like == id
+                        })
+
+                        if(itsLike){
+                            images.likes = images.likes.filter(like=>{
+                                return like != id
+                            })
+                        }else{
+                            images.likes.push(id)
+                        }
+                        // }
+                        user.images = images
                         return user.save()
                     })
-            })
 
     },
 
-    // remove(id, username, password) {
-    //     return Promise.resolve()
-    //         .then(() => {
-    //             validate({ id, username, password })
+    follow(ownerId, id) {
+        return Promise.resolve()
+            .then(() => {
+                validate({ownerId, id })
 
-    //             return User.findOne({ _id: id })
-    //         })
-    //         .then(user => {
+                return User.findOne({ _id: id })
+            })
+            .then(user => {
 
-    //             if (!user) throw Error('Username does not exist')
+                const _follow = user.following.some(like => {
+                    return like == ownerId
+                })
 
-    //             if (user._id.toString() !== id.toString()) throw Error('user id does not match the one provided')
+                if (_follow) {
+                    user.following = user.following.filter(like => {
+                        return like != ownerId
+                    })
+                } else {
+                    user.following.push(ownerId)
+                }
+                
+                return user.save()
+            })
+    },
 
-    //             if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
-
-    //             return user.remove()
-
-
-    //         })
-    // }
+   
 
 }
 

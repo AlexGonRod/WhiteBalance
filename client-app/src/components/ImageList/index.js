@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import { withRouter } from 'react-router-dom'
-
 import './styles/main.css'
 
 
 class ImageList extends Component {
+  
     handleComments = (imageId, userId) => {
         this.props.history.push(`/${imageId}/image/${userId}`)
     }
@@ -25,7 +25,7 @@ class ImageList extends Component {
                         </div>
                         <div className="card-body">
                             <div className="text2">
-                                <p className="likes"><i className="far fa-heart"></i><span className="badge text-muted">{image.likes ? image.likes.length : 0}</span><i className="far fa-comment" ></i><span className="badge text-muted">{image.comments ? image.comments.length : 0}</span></p>
+                                <p className="likes"><a className="heart"><i className="far fa-heart" ></i></a><span className="badge text-muted">{image.likes ? image.likes.length : 0}</span><i className="far fa-comment"></i><span className="badge text-muted">{image.comments ? image.comments.length : 0}</span></p>
                             </div>
                         </div>
                     </div>

@@ -14,6 +14,11 @@
   color: rgb(148, 148, 148);
 }
 
+.dropdown-menu {
+  background-color: black;
+  text-align: center;
+}
+
 
 
 

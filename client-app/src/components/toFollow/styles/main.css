@@ -53,6 +53,7 @@ header .imagen .comments {
 .likes {
     font-size: 20px;
     color: rgb(0, 0, 0);
+    cursor: pointer;
 }
 
 .card-body {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import api from '../../services/api'
+import firebase from 'firebase'
+import swal from 'sweetalert2'
 import './styles/main.css'
 
 class Image extends Component {
@@ -8,12 +10,11 @@ class Image extends Component {
         super()
         this.state = {
             image: {},
-            commentInput: ''
+            commentInput: '',
+            like: false
         }
 
     }
-
-
 
     submitComment = (e) => {
         e.preventDefault()
@@ -22,12 +23,15 @@ class Image extends Component {
         const imageId = this.props.match.params.imageId
 
         api.commentImage(user, imageId, comment, localStorage.getItem('token'))
-        window.location.reload();
+            .then(result => {
+                console.log(result)
+                window.location.reload();
+            })
+            .catch(() => alert('Ha habido un error'))
     }
 
     keepInputComment = (e) => {
         this.setState({ commentInput: e.target.value })
-
     }
 
     componentDidMount() {
@@ -38,20 +42,14 @@ class Image extends Component {
         if (imageId)
             api.getImage(imageId, ownerId, localStorage.getItem('token'))
                 .then(image => {
+                   
                     this.setState({ image: image.data })
                 })
-
     }
 
-    handleDelete = () => {
-        const imageId = this.props.match.params.imageId
+    
 
-        api.deleteImage(imageId, localStorage.getItem('token'))
-        .then(() => {
-        })
-            .then(this.props.history.push('/user'))
-    }
-
+    
 
     render() {
         return (
@@ -59,13 +57,19 @@ class Image extends Component {
             <div className="row">
 
                 <div className="card text-right w-75 h-75 col-xs-2 col-md-6">
-                    <div className="cross" >
-                        <button type="button" className="delete" onClick={this.handleDelete}><i class="fas fa-times"></i></button>
-                    </div>
+
                     <img className="card-img-top img-fluid" src={this.state.image.url} alt={this.state.image._id} />
                     <div className="card-body">
                         <div className="text2">
-                            <p className="likes"><i className="far fa-heart"></i><span className="badge text-muted">{this.state.image.likes ? this.state.image.likes.length : 0}</span><i className="far fa-comment" ></i><span className="badge text-muted">{this.state.image.comments ? this.state.image.comments.length : 0}</span></p>
+                            <p className="likes">
+                                 
+                                <span className="heart" onClick={(e) => { e.preventDefault(); this.handleLikes(this.state.image._id, this.state.image.user) }}>
+                                    <i className="far fa-heart" ></i>
+                                </span>
+                                <span className="badge text-muted">{this.state.image.likes ? this.state.image.likes.length : 0}</span>
+                                <i className="far fa-comment" ></i>
+                                <span className="badge text-muted">{this.state.image.comments ? this.state.image.comments.length : 0}</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -85,9 +89,10 @@ class Image extends Component {
                     <div>
                         <ul className="list-group text-left">
                             {this.state.image.comments ? this.state.image.comments.map((comment, index) => {
+                                console.log(comment)
                                 return (
                                     <li className="list-group-item text-muted" key={index}>{comment.text}
-                                        <p><small>{this.state.image.user.username}</small></p>
+                                        
                                     </li>
                                 )
                             }) : undefined

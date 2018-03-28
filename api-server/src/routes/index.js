@@ -54,6 +54,7 @@ routes.post('/create', jsonBodyParser, (req, res) => {
         .catch(err => res.json(fail(err.message)))
 })
 
+
 routes.get('/following', jwtValidate, (req, res) => {
 
     const { id } = req.tokencito
@@ -142,8 +143,19 @@ routes.put('/:ownerId/image/:imageId/likes', [jwtValidate, jsonBodyParser], (req
     const { id } = req.tokencito
 
     logic.setLikes(ownerId, imageId, id)
-        .then((likes) => {
-            return res.json(success(likes))
+        .then((_likes) => {
+            return res.json(success(_likes))
+        })
+        .catch(err => res.json(fail(err.message)))
+})
+
+routes.put('/:ownerId/follow', jwtValidate, (req, res) => {
+    const { ownerId } = req.params
+    const { id } = req.tokencito
+
+    logic.follow(ownerId, id)
+        .then(follow => {
+            res.json(success(follow))
         })
         .catch(err => res.json(fail(err.message)))
 })

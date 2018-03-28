@@ -49,14 +49,20 @@ header .imagen .comments {
   opacity:0;
   overflow: hidden;
 }
+.card-body {
+  padding: 0 !important;
+}
 
 .likes {
     font-size: 20px;
-    color: rgb(26, 26, 26);
 }
 
-.card-body {
-  padding: 0 !important;
+.heart {
+  text-decoration: none;
+}
+
+.check {
+  color: red;
 }
 
 @media screen and (max-width: 400px) {

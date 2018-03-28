@@ -51,9 +51,9 @@ class Register extends Component {
         } else {
             api.create(nameInput, usernameInput, passwordInput)
                 .then(user => {
-                    if(user) throw Error('User already exists')
+                
 
-                    this.props.history.push('/')
+                    this.props.history.push('/login')
                 })
         }
         

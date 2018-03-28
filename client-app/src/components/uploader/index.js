@@ -12,50 +12,44 @@ class Uploader extends Component {
             picture:''
         }
     }
-
+    
     componentDidMount() {
         window.scrollTo(0, 0)
     }
-    
-
 
     handleUpload = (event) => {
         const file = event.target.files[0]
         const storageRef = firebase.storage().ref(`/images/${file.name}`)
-        const task = storageRef.put(file)
-            .then(result => {
-
-                let image = result.downloadURL
-
-                api.updateImage(image, localStorage.getItem('token'))
-                    .then(image => {
-
-                    })
-            })
-            .then((result) => 
-            swal({
-                title: 'Do you want to upload this image?',
-                text: ":)",
-                type: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, upload  it!'
-
-            }).then((result) => {
-                swal(
-                    'Upload completed!',
-                    'Your file has uploaded.',
-                    'success'
-                )
-
-            }
-            )
-        .then(this.props.history.push('/user'))
-        )
-        
+        swal({
+            title: 'Do you want to upload this image?',
+            text: ":)",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, upload  it!'
+        }).then((res)=>{
+           
+            const task = storageRef.put(file)
+                .then(result => {
+                    let image = result.downloadURL
+                    api.updateImage(image, localStorage.getItem('token'))
+                        .then(image => {
+                            swal(
+                                'Upload completed!',
+                                'Your file has uploaded.',
+                                'success'
+                            ).then((res)=>{
+                                this.props.history.push('/user')
+                            })
+                        })
+                   
+                })
             
-
+        }).catch(()=>{
+            console.log('cancel...')
+        })
+        
     }
 
 

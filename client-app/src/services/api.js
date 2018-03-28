@@ -61,7 +61,11 @@ const api = {
     },
 
     likeImage(ownerId, imageId, token){
-        return this._call('put', `${ownerId}/image/${imageId}/like`, token)
+        return this._call('put', `${ownerId}/image/${imageId}/likes`,undefined, token)
+    },
+
+    follow(ownerId, token) {
+        return this._call('put', `${ownerId}/follow`, undefined, token)
     },
 
     delete(username, password, token) {
