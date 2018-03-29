@@ -19,13 +19,10 @@ render(){
 			</button>
 
 			<div className="collapse navbar-collapse" id="navbarSupportedContent">
+				
 				<ul className="navbar-nav">
 					<li className="nav-item" />
-					<NavLink id="follow" className="nav-link" to="/following">Following</NavLink>
-				</ul>
-				<ul className="navbar-nav">
-					<li className="nav-item" />
-					<NavLink id="tofollow" className="nav-link" to="/tofollow">To follow</NavLink>
+					<NavLink id="tofollow" className="nav-link" to="/tofollow">People</NavLink>
 				</ul>
             
 				<ul className="navbar-nav ml-auto ">

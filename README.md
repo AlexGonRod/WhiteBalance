@@ -1,6 +1,6 @@
 # WhiteBalance
 
-Do you want to **share** your camera PoV with everebody? Do you like **photography** as much as Us?
+Dont let your point of view about life stuck in your camera. Just share it with the world.
 
 Here you have the opportunity to show your **passion.**
 
@@ -26,7 +26,9 @@ Here you have the opportunity to show your **passion.**
 
 - HTML AND CSS 
 
-![alt text](docs/mockup.png "HTML AND CSS") 
+![alt text](docs/login.png "HTML AND CSS") 
+![alt text](docs/main.png "HTML AND CSS") 
+![alt text](docs/image.png "HTML AND CSS") 
 
 
 
@@ -49,8 +51,7 @@ Here you have the opportunity to show your **passion.**
     * Main App
         * Landing Page
             * User Page
-            * Following Page
-            * People to follow
+            * People
             * Upload Image
 
 - **LogIn/Register:** a kind of Splash Screen, the first thing that every user sees the first time.
@@ -61,9 +62,7 @@ Here you have the opportunity to show your **passion.**
 
 - **User Page:** User only sees his pictures
 
-- **Following :** A page where user sees following's pictures.
-
-- **Following :** A page where user sees pictures from people to follow.
+- **People :** A page where user sees pictures from people.
 
 ## DEVELOPER
 
