@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import api from '../../services/api'
+import api from '../../api'
 import firebase from 'firebase'
 import swal from 'sweetalert2'
 import './styles/main.css'
@@ -47,6 +47,17 @@ class Image extends Component {
                 })
     }
 
+    handleLikes = (imageId, ownerId) => {
+
+            api.likeImage(ownerId, imageId, localStorage.getItem('token'))
+            .then((result)=>{
+                const imageLiked = result.data.images.filter(img=>{
+                    return img._id === imageId
+                })
+                this.setState({ image: imageLiked[0]})
+            })
+
+    }
     
 
     
@@ -89,7 +100,7 @@ class Image extends Component {
                     <div>
                         <ul className="list-group text-left">
                             {this.state.image.comments ? this.state.image.comments.map((comment, index) => {
-                                console.log(comment)
+                            
                                 return (
                                     <li className="list-group-item text-muted" key={index}>{comment.text}
                                         

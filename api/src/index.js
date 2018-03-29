@@ -1,15 +1,15 @@
 const rp = require('request-promise')
 
 
-const protocol = 'http'
-const host = 'localhost'
-const port = 5000
+// const protocol = 'http'
+// const host = 'localhost'
+// const port = 5000
 
 const api = {
     _call(method, path, body, token) {
         const options = {
             method,
-            uri: `${protocol}://${host}:${port}/users/${path}`,
+            uri: `${this.protocol}://${this.host}/users/${path}`,
             body,
             json: true,
         }

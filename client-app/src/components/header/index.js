@@ -39,7 +39,6 @@ render(){
 						</a>
 						<div className="dropdown-menu dropdown-inverse dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
 							<NavLink id="follow" className="nav-link" to="/user">Profile</NavLink>
-							<NavLink id="follow" className="nav-link" to="/account">Settings</NavLink>
 							<NavLink id="follow" className="nav-link" to ="/" onClick={this.logOut}>Logout</NavLink>
 						</div>
 					</li>

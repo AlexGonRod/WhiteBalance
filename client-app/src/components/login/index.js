@@ -3,7 +3,7 @@ import { NavLink, withRouter } from 'react-router-dom'
 import firebase from 'firebase'
 
 import './styles/main.css'
-import api from '../../services/api'
+import api from '../../api'
 
 
 class Login extends Component {

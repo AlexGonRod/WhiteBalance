@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import './styles/main.css'
-import api from '../../services/api'
+import api from '../../api'
 
 
 class Register extends Component {

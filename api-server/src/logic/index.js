@@ -161,20 +161,28 @@ const logic = {
             })
                     .then(user => {
                         
-                        const images = user.images.id(imageId)
+                        let images = user.images
+
+                        let image = user.images.id(imageId)
                         
-                        const itsLike = images.likes.some(like=>{
+                        const itsLike = image.likes.some(like=>{
                             return like == id
                         })
 
                         if(itsLike){
-                            images.likes = images.likes.filter(like=>{
+                            image.likes = image.likes.filter(like=>{
                                 return like != id
                             })
                         }else{
-                            images.likes.push(id)
+                            image.likes.push(id)
                         }
-                        // }
+                        
+                        images = images.filter(img=>{
+                            return img._id != imageId
+                        })
+
+                        images.push(image)
+
                         user.images = images
                         return user.save()
                     })

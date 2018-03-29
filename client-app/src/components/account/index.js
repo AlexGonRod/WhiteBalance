@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 
 const style = {
     borderRadius: '50%'
-
 }
 
 class Account extends Component {

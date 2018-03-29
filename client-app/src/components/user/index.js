@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Jumbotron from '../jumbotron'
 import ImageWithRouter from '../ImageList'
-import api from '../../services/api'
+import api from '../../api'
 
 class User extends Component {
     constructor() {

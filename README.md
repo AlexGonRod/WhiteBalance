@@ -6,16 +6,18 @@ Here you have the opportunity to show your **passion.**
 
 ## SURGE
 
-## REPO GIT
+- WhiteBalance (http://whitebalance.surge.sh/)
 
-- WhiteBalance (https://github.com/AlexGonRod/WhiteBalance)
 
 ## PREWORK
 
-- ![alt text](docs/Model.png "DATA MODEL")
-- ![alt text](docs/UMl.png "UML")
-- ![alt text](docs/Flow.png "Flow")
-- ![alt text](docs/SpringPlan.png "SPRING PLAN")
+![alt text](docs/DataModel.png "DATA MODEL")
+![alt text](docs/UMl.png "UML")
+![alt text](docs/flow.png "Flow")
+![alt text](docs/SpringPlan.png "SPRING PLAN")
+
+
+## REPO GIT
 
 - WhiteBalance (https://github.com/AlexGonRod/WhiteBalance)
 
@@ -28,18 +30,17 @@ Here you have the opportunity to show your **passion.**
 
 
 
-## WHAT IT'S USED
+## WHAT IT's BEING USED
 
-- Framework: React Material-UI
+- Framework: Bootstrap 4
 - REACT
-- REACT Hash Router
-- REACT Photo Gallery
+- REACT Hash Router, Router, WithRouter
 - Some React Components
-- JASMINE
+- MOCHA
 - MongoDB
 - Mongoose
 - EXPRESS
-- PASSPORT
+- JSON Web Token
 
 
 ## COMPONENT TREE
@@ -48,13 +49,21 @@ Here you have the opportunity to show your **passion.**
     * Main App
         * Landing Page
             * User Page
-            * User Profile
+            * Following Page
+            * People to follow
+            * Upload Image
 
 - **LogIn/Register:** a kind of Splash Screen, the first thing that every user sees the first time.
+
 - **Main App**: this main component renderizes every single component.
-- **Landing Page:** The main page when a user has logged in. He can see some **categories.**
-- **User Page:** User only sees his follower's pictures
-- **User profile:** A page where user changes his data.
+
+- **Landing Page:** The main page when a user has logged in. He can see all components to be rendered.
+
+- **User Page:** User only sees his pictures
+
+- **Following :** A page where user sees following's pictures.
+
+- **Following :** A page where user sees pictures from people to follow.
 
 ## DEVELOPER
 

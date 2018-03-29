@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ListFollow from '../listFollow'
-import api from '../../services/api'
+import api from '../../api'
 
 class Following extends Component {
     constructor() {

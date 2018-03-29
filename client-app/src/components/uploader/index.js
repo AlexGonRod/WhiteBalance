@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import api from '../../services/api'
+import api from '../../api'
 import firebase from 'firebase'
 import swal from 'sweetalert2'
 import './styles/main.css'
